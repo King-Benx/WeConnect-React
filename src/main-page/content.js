@@ -1,16 +1,16 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import LandingPage from './secured/landing-page'
-import LoginPage from './public/login-page'
-import UnknownPage from './public/unknown-page';
-import ServerErrorPage from './public/server_error';
-import Dashboard from './secured/dashboard';
-import CreateBusiness from './secured/create_business';
-import YourBusinesses from './secured/your_business';
-import AllBusinesses from './secured/all_businesses';
-import Logout from './secured/logout';
+import LandingPage from './private-components/LandingPage'
+import LoginPage from './public/LoginPage'
+import UnknownPage from './public/UnknownPage';
+import ServerErrorPage from './public/ServerErrorPage';
+import Dashboard from './private-components/Dashboard';
+import CreateBusiness from './private-components/CreateBusiness';
+import YourBusinesses from './private-components/MyBusinesses';
+import AllBusinesses from './private-components/Businesses';
+import Logout from './private-components/Logout';
 
-const IndexContent = ()=>{
+const Content = ()=>{
     return (
         <div className="container-fluid">
         <Switch>
@@ -28,4 +28,4 @@ const IndexContent = ()=>{
         </div>
     );
 }
-export default IndexContent;
+export default Content;

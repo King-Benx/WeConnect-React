@@ -1,15 +1,15 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import NavBarDash from '../resources/dashboard-navigation';
-import checkAuthentication from '../functional-resources/functions';
+import checkAuthentication from '../functional-resources/checkAuthentication';
 import business_image from '../img/business.png';
+import DashboardNavigation from '../shared-components/DashboardNavigation';
 
 class Dashboard extends React.Component{
     render(){
         return (
             checkAuthentication()? (   
             <div className="row"> 
-                <NavBarDash/>
+                <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
                    <img src={business_image} className="img img-responsive" alt=""/>
                 </div>

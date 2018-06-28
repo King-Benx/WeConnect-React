@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import superagent from 'superagent';
 import { BASE_URL } from '../functional-resources/urls';
-import checkAuthentication from '../functional-resources/functions';
+import checkAuthentication from '../functional-resources/checkAuthentication';
 class LoginPage extends React.Component{
     constructor(){
         super();

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const NavBarDash = ()=>{
+const DashboardNavigation = ()=>{
     return (
         <div className="col-sm-3 wrapper">
             <h3 className="text-center">WeConnect</h3>
@@ -25,4 +25,4 @@ const NavBarDash = ()=>{
         </div>
     );
 }
-export default NavBarDash;
+export default DashboardNavigation;
