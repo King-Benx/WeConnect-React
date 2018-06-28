@@ -1,10 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import LandingPage from './landing-page'
-import LoginPage from './login-page'
-import UnknownPage from './unknown-page';
-import ServerErrorPage from './server_error';
-import Dashboard from './dashboard';
+import LandingPage from './secured/landing-page'
+import LoginPage from './public/login-page'
+import UnknownPage from './public/unknown-page';
+import ServerErrorPage from './public/server_error';
+import Dashboard from './secured/dashboard';
+import CreateBusiness from './secured/create_business';
+import YourBusinesses from './secured/your_business';
+import AllBusinesses from './secured/all_businesses';
+import Logout from './secured/logout';
 
 const IndexContent = ()=>{
     return (
@@ -16,6 +20,10 @@ const IndexContent = ()=>{
             <Route exact path="/404" component = {UnknownPage}/>
             <Route exact path="/500" component = {ServerErrorPage}/>
             <Route exact path="/dashboard" component = {Dashboard}/>
+            <Route exact path="/create_business" component = {CreateBusiness}/>
+            <Route exact path="/your_businesses" component = {YourBusinesses}/>
+            <Route exact path="/all_businesses" component = {AllBusinesses}  />
+            <Route exact path="/logout" component = {Logout} />
         </Switch>
         </div>
     );

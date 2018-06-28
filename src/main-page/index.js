@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './main-page.css';
-import NavBar from './navigation';
-import Footer from './footer';
+import NavBar from './resources/navigation';
+import Footer from './resources/footer';
 import IndexContent from './content';
 class App extends Component {
   render() {
