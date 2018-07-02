@@ -17,6 +17,13 @@ class OwnedBusinesses extends React.Component{
             show:false,
         }
     }
+    handleReset = (event)=>{
+        this.setState({name:"", location:"",category:"",description:""});
+    }
+
+    handleChange = (event)=>{
+        this.setState({[event.target.id]: event.target.value});
+    }
 
     handleClose() {
         this.setState({ show: false });
@@ -51,8 +58,7 @@ class OwnedBusinesses extends React.Component{
         .end((err,res)=>{
             if(err){CustomFunctions.createNotifications(err.status, err.toString())};
             CustomFunctions.createNotifications(res.status, res.body.message);
-            this.props.history.replace('/owned_businesses');
-            this.forceUpdate();
+            this.componentDidMount();
         });
     }
 
@@ -83,13 +89,42 @@ class OwnedBusinesses extends React.Component{
                         <Modal.Header>
                             <Modal.Title>Edit Business</Modal.Title>
                         </Modal.Header>
-
                         <Modal.Body>
-
+                            <form method="POST" className="form">
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon" id="business-addon">Business Name</span>
+                                        <input type="text" className="form-control" name="name" id="name" value={business.name} onChange={this.handleChange.bind(this)} placeholder="Business Name" aria-describedby="business-addon" required="required"/>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon" id="location-addon">Location</span>
+                                        <input type="text" className="form-control" name="location" id="location" value={business.location} onChange={this.handleChange.bind(this)} placeholder="Business Location" aria-describedby="location-addon" required="required"/>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon" id="category-addon">Business Category</span>
+                                        <input type="text" className="form-control" name="category" id="category" value={business.category} onChange={this.handleChange.bind(this)} placeholder="Business Name" aria-describedby="category-addon" required="required"/>  
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon" id="description-addon">Description</span>
+                                        <textarea className="form-control" name="description" id="description" value={business.description} onChange={this.handleChange.bind(this)} placeholder="Describe your Business" aria-describedby="description-addon"
+                                            required="required">{business.description}</textarea>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <Button type="reset" onClick={this.handleReset.bind(this)} className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                    <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-edit"></i> Edit Business</Button>
+                                    <div className="clearfix"></div>
+                                </div>
+                            </form>
                         </Modal.Body>
-
                         <Modal.Footer>
-                        <Button onClick={this.handleClose}>Close</Button>
+                            <Button onClick={this.handleClose}>Close</Button>
                         </Modal.Footer>
                     </Modal>
                 </tr>

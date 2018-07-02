@@ -18,9 +18,6 @@ const DashboardNavigation = ()=>{
                 <Link to="/all_businesses" className="list-group-item" id="view_all_businesses">
                     <i className="glyphicon glyphicon-th-list"></i> View all Businesses
                 </Link>
-                <Link to="/dashboard" className="list-group-item">
-                    <i className="glyphicon glyphicon-search"></i> Search for Business
-                </Link>
             </div>
         </div>
     );

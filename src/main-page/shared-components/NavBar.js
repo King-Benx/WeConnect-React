@@ -15,13 +15,7 @@ const NavBar = ()=>{
             </button>
             <Link className="navbar-brand" to="/">WeConnect</Link>
         </div>
-        <div className="collapse navbar-collapse navbar-ex1-collapse">
-            <ul className="nav navbar-nav navbar-right">
-                <li>
-                    <LoginLogout />
-                </li>
-            </ul>
-        </div>
+        <LoginLogout />  
     </nav>
     );
 }

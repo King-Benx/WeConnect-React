@@ -17,7 +17,7 @@ class CreateBusiness extends React.Component{
         this.setState({[event.target.id]: event.target.value});
     }
     
-    handleReset= (event)=>{
+    handleReset = (event)=>{
         this.setState({name:"", location:"",category:"",description:""});
     }
 

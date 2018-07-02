@@ -51,7 +51,6 @@ class Reviews extends React.Component{
 
     formSubmit(event){
         event.preventDefault();
-        const redirect_id=this.state.id;
         superagent
             .post(BASE_URL+'api/v1/businesses/'+this.state.id+'/reviews')
             .send({review:this.state.review})
@@ -60,7 +59,7 @@ class Reviews extends React.Component{
                 if(err){CustomFunctions.createNotifications(err.status, err.toString());};
                 CustomFunctions.createNotifications(res.status, res.body.message);
                 this.setState();
-                this.props.history.push('/all_businesses/'+redirect_id+'/reviews');
+                this.componentDidMount();
         });
     }
 
@@ -75,6 +74,7 @@ class Reviews extends React.Component{
                         <h4 className="list-group-item-heading">Author: <span className="text-primary">{review.author}</span></h4>
                         <blockquote className="list-group-item-text">{review.review}</blockquote>
                         <small className="text text-right text-primary">{review.last_modified}</small>
+                        <hr/>
                     </div>
                     <br/>
                 </div>
