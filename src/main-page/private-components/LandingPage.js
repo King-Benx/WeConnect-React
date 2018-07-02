@@ -17,6 +17,10 @@ class LandingPage extends React.Component{
         this.setState({[event.target.id]: event.target.value});
     }
     
+    handleReset= (event)=>{
+        this.setState({username:"", email:"",password:"",confirm_password:""});
+    }
+
     formSubmit(event){
         event.preventDefault();
         if (this.state.password === this.state.confirm_password){
@@ -74,7 +78,7 @@ class LandingPage extends React.Component{
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <Button type="reset" className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                    <Button type="reset" onClick={this.handleReset.bind(this)} className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
                                     <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-plus-sign"></i> Register</Button>
                                     <div className="clearfix"></div>
                                 </div>

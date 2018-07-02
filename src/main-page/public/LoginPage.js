@@ -14,6 +14,10 @@ class LoginPage extends React.Component{
         this.setState({[event.target.id]: event.target.value});
     }
 
+    handleReset= (event)=>{
+        this.setState({email:"",password:""});
+    }
+
     formSubmit(event){
         event.preventDefault();
         superagent
@@ -53,7 +57,7 @@ class LoginPage extends React.Component{
                                 </div>
                             </div>
                             <div className="form-group">
-                                <Button type="reset" className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                <Button type="reset" onClick={this.handleReset.bind(this)} className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
                                 <Button type="submit" className="pull-right" bsStyle="success"><i className="glyphicon glyphicon-log-in"></i> Login</Button>
                                 <div className="clearfix"></div>
                             </div>
