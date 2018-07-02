@@ -1,8 +1,10 @@
 import React from 'react';
 import business_image from '../img/business-3152586_640.jpg';
 import {Link} from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import superagent from 'superagent';
 import {BASE_URL} from '../functional-resources/urls';
+import CustomFunctions from '../functional-resources/CustomFunctions';
 
 class LandingPage extends React.Component{
     constructor(){
@@ -23,15 +25,15 @@ class LandingPage extends React.Component{
                     .post(BASE_URL+'api/v1/auth/register')
                     .send({username:this.state.username,email:this.state.email, password:this.state.password})
                     .end((err,res)=>{
-                        if(err){alert(res.body.message)}; 
-                        alert(res.body.message);
+                        if(err){CustomFunctions.createNotifications(err.status,err.toString())}; 
+                        CustomFunctions.createNotifications(res.status,res.body.message);
                         this.props.history.replace('/login');
                     });
                 }else{
-                    alert ('Passwords too short! Password cannot be less than 4 characters');
+                    CustomFunctions.createNotifications(400,'Password too short!');
                 }
             }else{
-            alert ('Passwords do not match! Please try again');
+                CustomFunctions.createNotifications(400,'Passwords are not similar');
         }
     }
 
@@ -72,8 +74,8 @@ class LandingPage extends React.Component{
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <input type="reset" className="btn btn-default pull-left" value="Reset"/>
-                                    <input type="submit" className="btn btn-primary pull-right" value="Register"/>
+                                    <Button type="reset" className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                    <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-plus-sign"></i> Register</Button>
                                     <div className="clearfix"></div>
                                 </div>
                             </form>

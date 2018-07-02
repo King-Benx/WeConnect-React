@@ -1,13 +1,13 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import checkAuthentication from '../functional-resources/checkAuthentication';
 import business_image from '../img/business.png';
 import DashboardNavigation from '../shared-components/DashboardNavigation';
+import CustomFunctions from '../functional-resources/CustomFunctions';
 
 class Dashboard extends React.Component{
     render(){
         return (
-            checkAuthentication()? (   
+            CustomFunctions.checkAuthentication() ? (   
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">

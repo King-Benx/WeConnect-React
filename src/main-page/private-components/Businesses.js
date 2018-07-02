@@ -1,23 +1,32 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import { Button, Table} from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../functional-resources/urls';
-import checkAuthentication from '../functional-resources/checkAuthentication';
+import CustomFunctions from '../functional-resources/CustomFunctions';
 import DashboardNavigation from '../shared-components/DashboardNavigation';
 
 class Businesses extends React.Component{
+    
     constructor(){
         super();
         this.state = {
             all_businesses:[]
         }
     }
+    
+    showReviews(event){
+        this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
+    }
+
     componentDidMount(){
         superagent
         .get(BASE_URL+'api/v1/businesses')
-        .set({'x-access-token':localStorage.getItem('token')})
+        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
         .end((err,res)=>{
-            if(err){alert(res.body.message)};
+            if(err){
+                CustomFunctions.createNotifications(err.status,res.body.message)
+            };
             if (res.status === 404){
                 this.setState({all_businesses:[]});
             }else if(res.status === 200){
@@ -35,13 +44,15 @@ class Businesses extends React.Component{
                     <td>{business.category}</td>
                     <td>{business.description}</td>
                     <td>
-                        <a href="reviews.html">10 reviews</a>
+                        <Button id={business.id} onClick={this.showReviews.bind(this)} bsStyle="info" block>
+                            <i className="glyphicon glyphicon-info-sign"></i> View
+                        </Button>
                     </td>
                 </tr>
             );
         }));
         return (
-            checkAuthentication()? (   
+            CustomFunctions.checkAuthentication()? (   
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
@@ -53,7 +64,7 @@ class Businesses extends React.Component{
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="table-responsive">
-                                <table className="table table-bordered table-checked">
+                                <Table striped bordered condensed hover>
                                     <thead>
                                         <tr>
                                             <th>Date of Creation</th>
@@ -61,13 +72,13 @@ class Businesses extends React.Component{
                                             <th>Location</th>
                                             <th>Category</th>
                                             <th>Description</th>
-                                            <th>Reviews</th>
+                                            <th>View</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {table_data}
                                     </tbody>
-                                </table>
+                                </Table>
                             </div>
                         </div>
                     </div>

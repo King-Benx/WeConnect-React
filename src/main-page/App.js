@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {NotificationContainer} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 import './main-page.css';
 import NavBar from './shared-components/NavBar';
 import Footer from './shared-components/Footer';
@@ -10,6 +12,7 @@ class App extends Component {
       <NavBar/>
       <Content />
       <Footer author="Asiimwe Benard"/>
+      <NotificationContainer/>
     </div>
 
     );

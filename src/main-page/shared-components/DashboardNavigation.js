@@ -12,7 +12,7 @@ const DashboardNavigation = ()=>{
                 <Link to="/create_business" className="list-group-item" id="create_business">
                     <i className="glyphicon glyphicon-plus"></i> Create Business
                 </Link>
-                <Link to="/your_businesses" className="list-group-item" id="your_business">
+                <Link to="/owned_businesses" className="list-group-item" id="your_business">
                     <i className="glyphicon glyphicon-eye-open"></i> Your Businesses
                 </Link>
                 <Link to="/all_businesses" className="list-group-item" id="view_all_businesses">

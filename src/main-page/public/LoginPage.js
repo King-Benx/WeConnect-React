@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../functional-resources/urls';
-import checkAuthentication from '../functional-resources/checkAuthentication';
+import CustomFunctions from '../functional-resources/CustomFunctions';
 class LoginPage extends React.Component{
     constructor(){
         super();
@@ -19,8 +20,8 @@ class LoginPage extends React.Component{
             .post(BASE_URL+'api/v1/auth/login')
             .send({email:this.state.email, password:this.state.password})
             .end((err,res)=>{
-                if(err){alert(res.body.message)}; 
-                localStorage.setItem('token', res.body.message.token);
+                if(err){CustomFunctions.createNotifications(err.status, res.body.message);}; 
+                CustomFunctions.storeToken(res.body.message.token, 20)
                 this.setState();
                 this.props.history.push('/dashboard');
             });
@@ -28,7 +29,7 @@ class LoginPage extends React.Component{
 
     render(){
         return ( 
-          checkAuthentication()? <Redirect to={{pathname:'/dashboard'}}/>:
+            CustomFunctions.checkAuthentication()? <Redirect to={{pathname:'/dashboard'}}/>:
             <div className="row">
                 <h1 className="text-center">
                     <em>WeConnect</em>
@@ -52,8 +53,8 @@ class LoginPage extends React.Component{
                                 </div>
                             </div>
                             <div className="form-group">
-                                <input type="reset" className="btn btn-default pull-left" value="Reset"/>
-                                <input type="submit" className="btn btn-primary pull-right" value="Login"/>
+                                <Button type="reset" className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                <Button type="submit" className="pull-right" bsStyle="success"><i className="glyphicon glyphicon-log-in"></i> Login</Button>
                                 <div className="clearfix"></div>
                             </div>
                         </form>

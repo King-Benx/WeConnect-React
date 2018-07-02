@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import checkAuthentication from '../functional-resources/checkAuthentication';
+import { Button } from 'react-bootstrap';
+import CustomFunctions from '../functional-resources/CustomFunctions';
 import superagent from 'superagent';
 import {BASE_URL} from '../functional-resources/urls';
 import DashboardNavigation from '../shared-components/DashboardNavigation';
@@ -21,16 +22,16 @@ class CreateBusiness extends React.Component{
         superagent
             .post(BASE_URL+'api/v1/businesses')
             .send({name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category})
-            .set({'x-access-token':localStorage.getItem('token')})
+            .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
             .end((err,res)=>{
-                if(err){alert(res.body.message)}; 
-                alert(res.body.message);
-                this.props.history.replace('/all_businesses');
+                if(err){CustomFunctions.createNotifications(err.status, err.toString());};
+                CustomFunctions.createNotifications(res.status, res.body.message)
+                this.props.history.replace('/owned_businesses');
             });
     }
     render(){
         return (
-            checkAuthentication()? (   
+            CustomFunctions.checkAuthentication()? (   
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
@@ -68,8 +69,8 @@ class CreateBusiness extends React.Component{
                             </div>
                         </div>
                         <div className="form-group">
-                            <input type="reset" className="btn btn-default pull-left" value="Reset"/>
-                            <input type="submit" className="btn btn-success pull-right" value="Create Business"/>
+                            <Button type="reset" className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                            <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-plus"></i> Create Business</Button>
                             <div className="clearfix"></div>
                         </div>
                     </form>
