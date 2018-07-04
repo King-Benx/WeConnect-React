@@ -2,9 +2,9 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { Button, Table} from 'react-bootstrap';
 import superagent from 'superagent';
-import { BASE_URL } from '../functional-resources/urls';
-import CustomFunctions from '../functional-resources/CustomFunctions';
-import DashboardNavigation from '../shared-components/DashboardNavigation';
+import { BASE_URL } from '../../custom/constants';
+import CustomFunctions from '../../custom/CustomFunctions';
+import DashboardNavigation from '../../navigation/DashboardNavigation';
 
 class Businesses extends React.Component{
     

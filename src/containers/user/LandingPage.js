@@ -1,10 +1,10 @@
 import React from 'react';
-import business_image from '../img/business-3152586_640.jpg';
+import business_image from '../../images/business-3152586_640.jpg';
 import {Link} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import superagent from 'superagent';
-import {BASE_URL} from '../functional-resources/urls';
-import CustomFunctions from '../functional-resources/CustomFunctions';
+import {BASE_URL} from '../../custom/constants';
+import CustomFunctions from '../../custom/CustomFunctions';
 
 class LandingPage extends React.Component{
     constructor(){

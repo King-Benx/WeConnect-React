@@ -1,8 +1,8 @@
 import React from 'react';
-import CustomFunctions from '../functional-resources/CustomFunctions';
-import Login from './Login';
-import Search from './Search';
-import Logout from './Logout';
+import CustomFunctions from '../custom/CustomFunctions';
+import Login from '../navigation/Login';
+import Search from '../containers/business/Search';
+import Logout from '../navigation/Logout';
 class LoginLogout extends React.Component{
     render(){
     return (

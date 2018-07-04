@@ -1,6 +1,6 @@
 import React from 'react';
 import {NotificationManager} from 'react-notifications';
-import {BASE_URL} from '../functional-resources/urls';
+import {BASE_URL} from './constants';
 import superagent from 'superagent';
 import { Redirect} from 'react-router-dom';
 class CustomFunctions {

@@ -1,5 +1,5 @@
 import React from 'react';
-import brief_case from '../img/briefcase.ico';
+import brief_case from '../../images/briefcase.ico';
 import { Image } from 'react-bootstrap';
 
 class BusinessInfo extends React.Component {

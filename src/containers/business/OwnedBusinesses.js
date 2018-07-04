@@ -2,9 +2,9 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { Modal, Button, Table } from 'react-bootstrap';
 import superagent from 'superagent';
-import CustomFunctions from '../functional-resources/CustomFunctions';
-import {BASE_URL} from '../functional-resources/urls';
-import DashboardNavigation from '../shared-components/DashboardNavigation';
+import CustomFunctions from '../../custom/CustomFunctions';
+import {BASE_URL} from '../../custom/constants';
+import DashboardNavigation from '../../navigation/DashboardNavigation';
 class OwnedBusinesses extends React.Component{
     constructor(){
         super();

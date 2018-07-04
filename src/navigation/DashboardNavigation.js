@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Redirect} from 'react-router-dom';
-import CustomFunctions from '../functional-resources/CustomFunctions';
+import CustomFunctions from '../custom/CustomFunctions';
 
 const DashboardNavigation = ()=>{
     return (

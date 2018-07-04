@@ -1,10 +1,10 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import CustomFunctions from '../functional-resources/CustomFunctions';
+import CustomFunctions from '../../custom/CustomFunctions';
 import superagent from 'superagent';
-import {BASE_URL} from '../functional-resources/urls';
-import DashboardNavigation from '../shared-components/DashboardNavigation';
+import {BASE_URL} from '../../custom/constants';
+import DashboardNavigation from '../../navigation/DashboardNavigation';
 
 class CreateBusiness extends React.Component{
     constructor(){

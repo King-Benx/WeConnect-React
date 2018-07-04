@@ -1,13 +1,12 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
-import CustomFunctions from '../functional-resources/CustomFunctions';
-import DashboardNavigation from '../shared-components/DashboardNavigation';
-import comment_icon from '../img/comment-icon.jpg';
-
-import { BASE_URL } from '../functional-resources/urls';
+import CustomFunctions from '../../custom/CustomFunctions';
+import DashboardNavigation from '../../navigation/DashboardNavigation';
+import comment_icon from '../../images/comment-icon.jpg';
+import { BASE_URL } from '../../custom/constants';
 import superagent from 'superagent';
-import BusinessInfo from './BusinessInfo';
+import BusinessInfo from '../business/BusinessInfo';
 
 class Reviews extends React.Component{
     constructor(props){

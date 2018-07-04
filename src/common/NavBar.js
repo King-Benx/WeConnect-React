@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import LoginLogout from './LoginLogout';
+import LoginLogout from '../navigation/LoginLogout';
 
 
 const NavBar = ()=>{

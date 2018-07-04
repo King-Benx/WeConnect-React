@@ -1,16 +1,16 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import LandingPage from './private-components/LandingPage'
-import LoginPage from './public/LoginPage'
-import UnknownPage from './public/UnknownPage';
-import ServerErrorPage from './public/ServerErrorPage';
-import Dashboard from './private-components/Dashboard';
-import CreateBusiness from './private-components/CreateBusiness';
-import OwnedBusinesses from './private-components/OwnedBusinesses';
-import AllBusinesses from './private-components/Businesses';
-import Logout from './private-components/Logout';
-import Reviews from './private-components/Reviews';
-import SearchResults from './private-components/SearchResults';
+import LandingPage from '../containers/user/LandingPage'
+import LoginPage from '../containers/user/LoginPage'
+import UnknownPage from '../common/UnknownPage';
+import ServerErrorPage from '../common/ServerErrorPage';
+import Dashboard from '../containers/user/Dashboard';
+import CreateBusiness from '../containers/business/CreateBusiness';
+import OwnedBusinesses from '../containers/business/OwnedBusinesses';
+import AllBusinesses from '../containers/business/Businesses';
+import Logout from '../containers/user/Logout';
+import Reviews from '../containers/review/Reviews';
+import SearchResults from '../containers/business/SearchResults';
 
 const Content = ()=>{
     return (

@@ -2,8 +2,8 @@ import React from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import superagent from 'superagent';
-import { BASE_URL } from '../functional-resources/urls';
-import CustomFunctions from '../functional-resources/CustomFunctions';
+import { BASE_URL } from '../../custom/constants';
+import CustomFunctions from '../../custom/CustomFunctions';
 class LoginPage extends React.Component{
     constructor(){
         super();
