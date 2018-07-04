@@ -10,6 +10,7 @@ import OwnedBusinesses from './private-components/OwnedBusinesses';
 import AllBusinesses from './private-components/Businesses';
 import Logout from './private-components/Logout';
 import Reviews from './private-components/Reviews';
+import SearchResults from './private-components/SearchResults';
 
 const Content = ()=>{
     return (
@@ -25,6 +26,8 @@ const Content = ()=>{
             <Route exact path="/all_businesses" component = {AllBusinesses}  />
             <Route exact path="/all_businesses/:id/reviews" component = {Reviews}  />
             <Route exact path="/logout" component = {Logout} />
+            <Route exact path="/search/:search/:filter_type/:filter_value" component={SearchResults}/>
+            <Route exact path="/search/:search/*" component={SearchResults}/>
             <Route component = {UnknownPage}/>
         </Switch>
         </div>

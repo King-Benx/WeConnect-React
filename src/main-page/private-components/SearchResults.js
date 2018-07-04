@@ -6,30 +6,34 @@ import { BASE_URL } from '../functional-resources/urls';
 import CustomFunctions from '../functional-resources/CustomFunctions';
 import DashboardNavigation from '../shared-components/DashboardNavigation';
 
-class Businesses extends React.Component{
+class SearchResults extends React.Component{
     
-    constructor(){
+    constructor(props){
         super();
         this.state = {
-            all_businesses:[]
+            all_businesses:[],
+            q:props.match.params.search,
+            filter_type:props.match.params.filter_type,
+            filter_value:props.match.params.filter_value,
         }
     }
     
     showReviews(event){
         this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
     }
+
     componentDidMount(){
         superagent
-        .get(BASE_URL+'api/v1/businesses')
+        .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+this.state.filter_type+'&filter_value='+this.state.filter_value)
         .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
         .end((err,res)=>{
             if(err){
-                CustomFunctions.createNotifications(err.status,res.body.message)
+                CustomFunctions.createNotifications(err.status,err.toString())
             };
             if (res.status === 404){
                 this.setState({all_businesses:[]});
             }else if(res.status === 200){
-                this.setState({all_businesses:res.body.results.businesses});
+                this.setState({all_businesses:res.body.results.searched_businesses});
             }
         });
     }
@@ -87,4 +91,4 @@ class Businesses extends React.Component{
         );
     }
 }
-export default Businesses;
+export default SearchResults;

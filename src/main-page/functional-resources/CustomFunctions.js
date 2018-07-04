@@ -1,4 +1,8 @@
+import React from 'react';
 import {NotificationManager} from 'react-notifications';
+import {BASE_URL} from '../functional-resources/urls';
+import superagent from 'superagent';
+import { Redirect} from 'react-router-dom';
 class CustomFunctions {
     static createNotifications(code, message) {
         switch (code) {
@@ -39,6 +43,12 @@ class CustomFunctions {
         const stored_data = localStorage.getItem('data')
         if (stored_data){
             const stored_token = JSON.parse(stored_data).token;
+            superagent
+            .get(BASE_URL+'api/v1/auth/test_token')
+            .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+            .end((err)=>{
+                if(err){return <Redirect to="/login"/>}
+            });
             return stored_token && stored_token.length > 10;
         }else{
             return false;

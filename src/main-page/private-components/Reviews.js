@@ -4,9 +4,10 @@ import { Button, Image } from 'react-bootstrap';
 import CustomFunctions from '../functional-resources/CustomFunctions';
 import DashboardNavigation from '../shared-components/DashboardNavigation';
 import comment_icon from '../img/comment-icon.jpg';
-import brief_case from '../img/briefcase.ico';
+
 import { BASE_URL } from '../functional-resources/urls';
 import superagent from 'superagent';
+import BusinessInfo from './BusinessInfo';
 
 class Reviews extends React.Component{
     constructor(props){
@@ -58,7 +59,7 @@ class Reviews extends React.Component{
             .end((err,res)=>{
                 if(err){CustomFunctions.createNotifications(err.status, err.toString());};
                 CustomFunctions.createNotifications(res.status, res.body.message);
-                this.setState();
+                this.setState({review:""});
                 this.componentDidMount();
         });
     }
@@ -66,7 +67,7 @@ class Reviews extends React.Component{
      render(){
         const div_data= this.state.reviews.map(((review)=>{
             return(
-                <div className="row">
+                <div key={review.id} className="row">
                     <div className="col-xs-2">
                         <Image src={comment_icon} alt="" responsive circle/>
                     </div>
@@ -88,14 +89,7 @@ class Reviews extends React.Component{
                         <div className="row">
                             <div className="col-xs-12 col-sm-4">
                                 <div className="row">
-                                    <div className="col-xs-12">
-                                    <Image src={brief_case} alt="" thumbnail responsive/>
-                                    <h4><b>Business name: </b> <span className="text text-info">{this.state.business.name}</span></h4>
-                                    <h4><b>Category: </b> <span className="text text-info">{this.state.business.category}</span></h4>
-                                    <h4><b>Location: </b> <span className="text text-info">{this.state.business.location}</span></h4>
-                                    <h4><u>Description</u></h4>
-                                    <p className="text text-info">{this.state.business.description}</p>
-                                    </div>
+                                    <BusinessInfo business={this.state.business} />
                                 </div>
                             </div>
                             <div className="col-xs-12 col-sm-8">
@@ -107,7 +101,7 @@ class Reviews extends React.Component{
                                             <div className="col-sm-9">
                                                 <textarea name="review" id="review" value={this.state.review} onChange={this.handleChange.bind(this)} className="form-control" required="required" placeholder="Leave Review Here" ></textarea>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div className="col-sm-3">
                                                 <Button type="submit" bsStyle="success" block><i className="glyphicon glyphicon-plus"></i> Add Review</Button>
                                             </div>
                                         </div>

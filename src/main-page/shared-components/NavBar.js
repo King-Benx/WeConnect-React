@@ -15,7 +15,9 @@ const NavBar = ()=>{
             </button>
             <Link className="navbar-brand" to="/">WeConnect</Link>
         </div>
-        <LoginLogout />  
+        <div className="collapse navbar-collapse navbar-ex1-collapse">
+            <LoginLogout/>
+        </div>
     </nav>
     );
 }
