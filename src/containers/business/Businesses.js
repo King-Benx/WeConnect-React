@@ -51,7 +51,7 @@ class Businesses extends React.Component{
             );
         }));
         return (
-            CustomFunctions.checkAuthentication()? (   
+            CustomFunctions.checkAuthentication() ? (   
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">

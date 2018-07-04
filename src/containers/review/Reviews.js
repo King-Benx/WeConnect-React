@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import CustomFunctions from '../../custom/CustomFunctions';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
-import comment_icon from '../../images/comment-icon.jpg';
 import { BASE_URL } from '../../custom/constants';
 import superagent from 'superagent';
 import BusinessInfo from '../business/BusinessInfo';
+import ReviewInfo from './ReviewInfo';
 
 class Reviews extends React.Component{
     constructor(props){
@@ -66,18 +66,7 @@ class Reviews extends React.Component{
      render(){
         const div_data= this.state.reviews.map(((review)=>{
             return(
-                <div key={review.id} className="row">
-                    <div className="col-xs-2">
-                        <Image src={ comment_icon } alt="" responsive circle/>
-                    </div>
-                    <div className="col-xs-10">
-                        <h4 className="list-group-item-heading">Author: <span className="text-primary">{ review.author }</span></h4>
-                        <blockquote className="list-group-item-text">{ review.review }</blockquote>
-                        <small className="text text-right text-primary">{ review.last_modified }</small>
-                        <hr/>
-                    </div>
-                    <br/>
-                </div>
+                <ReviewInfo review={ review }/>
             );
         }));   
         return (

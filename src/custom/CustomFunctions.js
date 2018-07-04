@@ -28,13 +28,14 @@ class CustomFunctions {
         var minutes = timeout; 
         var now = new Date().getTime();
         const stored_data = localStorage.getItem('data');
-        var setupTime = stored_data?JSON.parse(stored_data).setupTime:null;
+        var setupTime = stored_data ? JSON.parse(stored_data).setupTime : null;
         if (setupTime == null) {
             localStorage.clear();
             localStorage.setItem('data',JSON.stringify({'setupTime':now,'token':token}))
         } else {
             if(now-setupTime > minutes*60*1000) {
                 localStorage.clear();
+                localStorage.removeItem('data');
             }
         }
     }
