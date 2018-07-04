@@ -1,0 +1,45 @@
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+.footer{
+  color: #ffff;
+  bottom: 0;
+  position: fixed;
+  background:rgba(0,0,0,0.7);
+  width:100%;
+}
+
+.error_handler,#login-panel{
+  max-width:500px;
+  margin:30px auto;
+}
+
+.error_handler{
+  margin-top:100px;
+}
+
+.wrapper{
+  margin-top: 10px;
+  background-color: rgba(0,0,0,0.7);
+  color:grey;
+  min-height:500px;
+  border-radius: 10px;
+}
+
+.side-menu{
+  margin-top:30%;
+  margin-bottom: 20px;
+}
+
+.content-wrapper{
+  margin-top: 10px;
+}
+
+@media (max-width:400px) {
+  .side-menu{
+      margin-top: auto; 
+  }
+}
