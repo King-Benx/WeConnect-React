@@ -1,6 +1,6 @@
 import React from 'react';
-import {NotificationManager} from 'react-notifications';
-import {BASE_URL} from './constants';
+import { NotificationManager } from 'react-notifications';
+import { BASE_URL } from './constants';
 import superagent from 'superagent';
 import { Redirect} from 'react-router-dom';
 class CustomFunctions {
@@ -47,7 +47,7 @@ class CustomFunctions {
             .get(BASE_URL+'api/v1/auth/test_token')
             .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
             .end((err)=>{
-                if(err){return <Redirect to="/login"/>}
+                if(err){ return <Redirect to="/login"/> }
             });
             return stored_token && stored_token.length > 10;
         }else{

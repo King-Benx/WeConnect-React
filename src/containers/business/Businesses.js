@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Button, Table} from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../../custom/constants';

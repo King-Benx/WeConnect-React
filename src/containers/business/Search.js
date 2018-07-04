@@ -26,21 +26,21 @@ class Search extends React.Component{
     render(){
         return (
         <li>
-            <form className="navbar-form" onSubmit={this.formSubmit}>
+            <form className="navbar-form" onSubmit={ this.formSubmit }>
                 <div className="form-group">
-                    <select id="filter_type" name="filter_type" value={this.state.filter_type} className="form-control" onChange={this.handleChange}>
+                    <select id="filter_type" name="filter_type" value={ this.state.filter_type } className="form-control" onChange={ this.handleChange }>
                         <option value="">Filter by</option>
                         <option value="location">Location</option>
                         <option value="category">Category</option>
                     </select>|
                 </div>
                 <div className="form-group">
-                    <input type="text" id="filter_value" value={this.state.filter_value} onChange={this.handleChange} className="form-control" placeholder="filter value"/>|
+                    <input type="text" id="filter_value" value={ this.state.filter_value } onChange={ this.handleChange } className="form-control" placeholder="filter value"/>|
                 </div>
                 <div className="form-group">
-                    <input type="text" id="search" value={this.state.search} onChange={this.handleChange} className="form-control" placeholder="Search" required="required"/>|
+                    <input type="text" id="search" value={ this.state.search } onChange={ this.handleChange } className="form-control" placeholder="Search" required="required"/>|
                 </div>
-                <Button bsStyle="info" type="submit" onChange={this.handleChange} className="btn btn-default"><i className="glyphicon glyphicon-search"></i></Button>
+                <Button bsStyle="info" type="submit" onChange={ this.handleChange } className="btn btn-default"><i className="glyphicon glyphicon-search"></i></Button>
             </form>
         </li>
         );

@@ -18,36 +18,36 @@ class SearchResults extends React.Component{
         }
     }
     
-    showReviews(event){
-        this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
+    showReviews = (event) => {
+        this.props.history.push('/all_businesses/'+ event.target.id +'/reviews');
     }
 
     componentDidMount(){
         superagent
-        .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+this.state.filter_type+'&filter_value='+this.state.filter_value)
-        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+ this.state.filter_type +'&filter_value='+ this.state.filter_value)
+        .set({ 'x-access-token':JSON.parse(localStorage.getItem('data')).token })
         .end((err,res)=>{
             if(err){
                 CustomFunctions.createNotifications(err.status,err.toString())
             };
             if (res.status === 404){
-                this.setState({all_businesses:[]});
+                this.setState({ all_businesses:[] });
             }else if(res.status === 200){
-                this.setState({all_businesses:res.body.results.searched_businesses});
+                this.setState({ all_businesses:res.body.results.searched_businesses });
             }
         });
     }
     render(){
         const table_data= this.state.all_businesses.map(((business)=>{
             return(
-                <tr key={business.id.toString()}>
-                    <td>{business.date_created}</td>
-                    <td>{business.name}</td>
-                    <td>{business.location}</td>
-                    <td>{business.category}</td>
-                    <td>{business.description}</td>
+                <tr key={ business.id.toString() }>
+                    <td>{ business.date_created }</td>
+                    <td>{ business.name }</td>
+                    <td>{ business.location }</td>
+                    <td>{ business.category }</td>
+                    <td>{ business.description }</td>
                     <td>
-                        <Button id={business.id} onClick={this.showReviews.bind(this)} bsStyle="info" block>
+                        <Button id={business.id} onClick={ this.showReviews } bsStyle="info" block>
                             <i className="glyphicon glyphicon-info-sign"></i> View
                         </Button>
                     </td>
@@ -87,7 +87,7 @@ class SearchResults extends React.Component{
                     </div>
                 </div>
             </div>
-            ): <Redirect to={{pathname:'/login'}}/>
+            ): <Redirect to={{ pathname:'/login' }}/>
         );
     }
 }

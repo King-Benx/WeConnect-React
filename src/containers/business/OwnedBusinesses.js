@@ -1,9 +1,9 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Modal, Button, Table } from 'react-bootstrap';
 import superagent from 'superagent';
 import CustomFunctions from '../../custom/CustomFunctions';
-import {BASE_URL} from '../../custom/constants';
+import { BASE_URL } from '../../custom/constants';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
 class OwnedBusinesses extends React.Component{
     constructor(){
@@ -22,12 +22,12 @@ class OwnedBusinesses extends React.Component{
             description:""
         }
     }
-    handleReset = (event)=> {
-        this.setState({name:"", location:"",category:"",description:""});
+    handleReset = (event) => {
+        this.setState({ name:"", location:"",category:"",description:"" });
     }
 
-    handleChange = (event)=>{
-        this.setState({[event.target.id]: event.target.value});
+    handleChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value });
     }
 
     handleClose() {
@@ -66,11 +66,11 @@ class OwnedBusinesses extends React.Component{
         });
     }
     
-    showReviews(event){
+    showReviews = (event) => {
         this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
     }
 
-    deleteBusiness(event){
+    deleteBusiness = (event) => {
         superagent
         .del(BASE_URL+'api/v1/businesses/'+event.target.id)
         .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
@@ -81,7 +81,7 @@ class OwnedBusinesses extends React.Component{
         });
     }
 
-    handleSubmit = (event)=> {
+    handleSubmit = (event) => {
         event.preventDefault();
         superagent
             .put(BASE_URL+'api/v1/businesses/'+this.state.business_id)
@@ -98,24 +98,24 @@ class OwnedBusinesses extends React.Component{
         const table_data= this.state.owned_businesses.map(((business)=>{
 
             return(
-                <tr key={business.id.toString()}>
-                    <td>{business.last_modified.toString().replace('GMT','')}</td>
-                    <td>{business.name}</td>
-                    <td>{business.location}</td>
-                    <td>{business.category}</td>
-                    <td>{business.description}</td>
+                <tr key={ business.id.toString() }>
+                    <td>{ business.last_modified.toString().replace('GMT','') }</td>
+                    <td>{ business.name }</td>
+                    <td>{ business.location }</td>
+                    <td>{ business.category }</td>
+                    <td>{ business.description }</td>
                     <td>
-                        <Button id={business.id} onClick={this.showReviews.bind(this)} bsStyle="info" block>
+                        <Button id={ business.id } onClick={ this.showReviews } bsStyle="info" block>
                             <i className="glyphicon glyphicon-star"></i> Reviews
                         </Button>
                     </td>
                     <td>
-                        <Button id={business.id} bsStyle="warning" onClick={this.handleShow} block>
+                        <Button id={ business.id } bsStyle="warning" onClick={ this.handleShow } block>
                             <i className="glyphicon glyphicon-edit"></i> Edit
                         </Button>
                     </td>
                     <td>
-                        <Button id={business.id} onClick={this.deleteBusiness.bind(this)} bsStyle="danger" block><i className="glyphicon glyphicon-trash"></i></Button>
+                        <Button id={ business.id } onClick={ this.deleteBusiness } bsStyle="danger" block><i className="glyphicon glyphicon-trash"></i></Button>
                     </td>
                 </tr>
             );
@@ -150,46 +150,34 @@ class OwnedBusinesses extends React.Component{
                                         {table_data}
                                     </tbody>
                                 </Table>
-                                <Modal show={this.state.show} onHide={this.handleClose}>
+                                <Modal show={ this.state.show } onHide={ this.handleClose }>
                                     <Modal.Header>
                                         <Modal.Title>Edit Business</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <form id={this.state.business_id} method="POST" className="form" onSubmit={this.handleSubmit}>
+                                        <form id={ this.state.business_id } method="POST" className="form" onSubmit={ this.handleSubmit }>
                                             <div className="form-group">
-                                                <div className="input-group">
-                                                    <span className="input-group-addon" id="business-addon">Business Name</span>
-                                                    <input type="text" className="form-control" name="name" id="name" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Business Name" aria-describedby="business-addon" required="required"/>
-                                                </div>
+                                                <input type="text" className="form-control" name="name" id="name" value={ this.state.name } onChange={ this.handleChange } placeholder="Business Name" aria-describedby="business-addon" required="required"/>
                                             </div>
                                             <div className="form-group">
-                                                <div className="input-group">
-                                                    <span className="input-group-addon" id="location-addon">Location</span>
-                                                    <input type="text" className="form-control" name="location" id="location" value={this.state.location} onChange={this.handleChange.bind(this)} placeholder="Business Location" aria-describedby="location-addon" required="required"/>
-                                                </div>
+                                                <input type="text" className="form-control" name="location" id="location" value={ this.state.location } onChange={ this.handleChange } placeholder="Business Location" aria-describedby="location-addon" required="required"/>
                                             </div>
                                             <div className="form-group">
-                                                <div className="input-group">
-                                                    <span className="input-group-addon" id="category-addon">Business Category</span>
-                                                    <input type="text" className="form-control" name="category" id="category" value={this.state.category} onChange={this.handleChange.bind(this)} placeholder="Business Name" aria-describedby="category-addon" required="required"/>  
-                                                </div>
+                                                <input type="text" className="form-control" name="category" id="category" value={ this.state.category } onChange={ this.handleChange } placeholder="Business Name" aria-describedby="category-addon" required="required"/>  
                                             </div>
                                             <div className="form-group">
-                                                <div className="input-group">
-                                                    <span className="input-group-addon" id="description-addon">Description</span>
-                                                    <textarea className="form-control" name="description" id="description" value={this.state.description} onChange={this.handleChange.bind(this)} placeholder="Describe your Business" aria-describedby="description-addon"
+                                                    <textarea className="form-control" name="description" id="description" value={ this.state.description } onChange={ this.handleChange } placeholder="Describe your Business" aria-describedby="description-addon"
                                                         required="required"></textarea>
-                                                </div>
                                             </div>
                                             <div className="form-group">
-                                                <Button type="reset" onClick={this.handleReset} className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
+                                                <Button type="reset" onClick={ this.handleReset } className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
                                                 <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-edit"></i> Edit Business</Button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button onClick={this.handleClose}>Close</Button>
+                                        <Button onClick={ this.handleClose }>Close</Button>
                                     </Modal.Footer>
                                 </Modal>
                             </div>
@@ -197,7 +185,7 @@ class OwnedBusinesses extends React.Component{
                     </div>
                 </div>
             </div>
-            ): <Redirect to={{pathname:'/login'}}/>
+            ): <Redirect to={{ pathname:'/login' }}/>
         );
     }
 }

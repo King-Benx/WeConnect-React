@@ -11,12 +11,12 @@ class BusinessInfo extends React.Component {
     render() { 
         return (
         <div className="col-xs-12">
-            <Image src={brief_case} alt="" thumbnail responsive/>
-            <h4><b>Business name: </b> <span className="text text-info">{this.props.business.name}</span></h4>
-            <h4><b>Category: </b> <span className="text text-info">{this.props.business.category}</span></h4>
-            <h4><b>Location: </b> <span className="text text-info">{this.props.business.location}</span></h4>
+            <Image src={ brief_case } alt="" thumbnail responsive/>
+            <h4><b>Business name: </b> <span className="text text-info">{ this.props.business.name }</span></h4>
+            <h4><b>Category: </b> <span className="text text-info">{ this.props.business.category }</span></h4>
+            <h4><b>Location: </b> <span className="text text-info">{ this.props.business.location }</span></h4>
             <h4><u>Description</u></h4>
-            <p className="text text-info">{this.props.description}</p>
+            <p className="text text-info">{ this.props.business.description }</p>
         </div>  )
     }
 }
