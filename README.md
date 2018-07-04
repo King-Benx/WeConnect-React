@@ -26,6 +26,7 @@ businesses they have interacted with.
 2. Install Required Packages Redirect into the app directory and run the following command (Make sure you have npm installed on your machine)
 
     **```npm install```**
+
 **NB: [More Information on setting up npm](https://docs.npmjs.com/cli/install)**
 
 ## RUNNING APPLICATION
