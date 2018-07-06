@@ -41,7 +41,7 @@ describe('These are tests for the login form ', () =>{
 
     // it('has an image', () => {
     //     const wrapper = shallow(<ResetPassword />)
-    //     expect(wrapper.contains('Image').Equals(true)
+    //     expect(wrapper.find('Image').length).toBe(1)
     // });
 
     // it('renders the form', () => {

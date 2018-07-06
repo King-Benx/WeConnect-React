@@ -27,9 +27,9 @@ class LandingPage extends React.Component{
             if (this.state.password.length > 4){
                 superagent
                     .post(BASE_URL+'api/v1/auth/register')
-                    .send({ username:this.state.username,email:this.state.email, password:this.state.password })
+                    .send({ username:this.state.username, email:this.state.email, password:this.state.password })
                     .end((err,res)=>{
-                        if(err){ CustomFunctions.createNotifications(err.status,err.toString()) }; 
+                        if(err){ CustomFunctions.createNotifications(err.status, err.toString()) }; 
                         CustomFunctions.createNotifications(res.status,res.body.message);
                         this.props.history.replace('/login');
                     });

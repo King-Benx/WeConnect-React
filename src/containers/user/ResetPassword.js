@@ -17,7 +17,7 @@ class Dashboard extends React.Component{
     }
 
     handleReset = (event) => {
-        this.setState({name:"", location:"",category:"",description:""});
+        this.setState({password:"", confirm_password:""});
     }
 
     handleChange = (event) => {
@@ -31,7 +31,7 @@ class Dashboard extends React.Component{
                 superagent
                     .post(BASE_URL+'api/v1/auth/reset-password')
                     .send({ new_password:this.state.password })
-                    .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+                    .set({'x-access-token':CustomFunctions.getToken()})
                     .end((err,res)=>{
                         if(err){ CustomFunctions.createNotifications(err.status,err.toString()) }; 
                         CustomFunctions.createNotifications(res.status,res.body.message);

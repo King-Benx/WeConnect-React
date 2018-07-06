@@ -25,7 +25,7 @@ class SearchResults extends React.Component{
     componentDidMount(){
         superagent
         .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+ this.state.filter_type +'&filter_value='+ this.state.filter_value)
-        .set({ 'x-access-token':JSON.parse(localStorage.getItem('data')).token })
+        .set({ 'x-access-token':CustomFunctions.getToken() })
         .end((err,res)=>{
             if(err){
                 CustomFunctions.createNotifications(err.status,err.toString())
