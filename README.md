@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/King-Benx/WeConnect-React.svg?branch=master)](https://travis-ci.org/King-Benx/WeConnect-React) [![Coverage Status](https://coveralls.io/repos/github/King-Benx/WeConnect-React/badge.svg?branch=master)](https://coveralls.io/github/King-Benx/WeConnect-React?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7db8dcb37c4b7ae00475/maintainability)](https://codeclimate.com/github/King-Benx/WeConnect-React/maintainability)
 # WeConnect
 
 ## DESCRIPTION
