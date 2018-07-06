@@ -11,6 +11,7 @@ import AllBusinesses from '../containers/business/Businesses';
 import Logout from '../containers/user/Logout';
 import Reviews from '../containers/review/Reviews';
 import SearchResults from '../containers/business/SearchResults';
+import ResetPassword from '../containers/user/ResetPassword';
 
 const Content = ()=>{
     return (
@@ -28,6 +29,7 @@ const Content = ()=>{
             <Route exact path="/logout" component = { Logout } />
             <Route exact path="/search/:search/:filter_type/:filter_value" component={ SearchResults }/>
             <Route exact path="/search/:search/*" component={ SearchResults }/>
+            <Route exact path="/reset_password" component={ ResetPassword }/>
             <Route component = { UnknownPage }/>
         </Switch>
         </div>

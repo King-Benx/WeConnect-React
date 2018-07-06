@@ -171,7 +171,7 @@ class OwnedBusinesses extends React.Component{
                                             </div>
                                             <div className="form-group">
                                                 <Button type="reset" onClick={ this.handleReset } className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
-                                                <Button type="submit" className="pull-right" bsStyle="primary"><i className="glyphicon glyphicon-edit"></i> Edit Business</Button>
+                                                <Button type="submit" className="pull-right" bsStyle="warning"><i className="glyphicon glyphicon-edit"></i> Edit Business</Button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>

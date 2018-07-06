@@ -20,6 +20,9 @@ const DashboardNavigation = ()=>{
                 <Link to="/all_businesses" className="list-group-item" id="view_all_businesses">
                     <i className="glyphicon glyphicon-th-list"></i> View all Businesses
                 </Link>
+                <Link to="/reset_password" className="list-group-item" id="view_all_businesses">
+                    <i className="glyphicon glyphicon-wrench"></i> Reset Password
+                </Link>
             </div>
         </div>
         ): <Redirect to={{pathname:'/login'}}/>

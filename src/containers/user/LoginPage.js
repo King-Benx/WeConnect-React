@@ -45,7 +45,7 @@ class LoginPage extends React.Component{
                     <div className="panel-body">
                         <form method="POST" className="form" onSubmit={ this.formSubmit }>
                             <div className="form-group">
-                                <input type="email" className="form-control" value={ this.state.email } name="email" id="email" onChange={ this.handleChange } placeholder="johndoe@mail.com" aria-describedby="email-addon" required="required"/>
+                                <input type="email" className="form-control" value={ this.state.email } name="email" id="email" onChange={ this.handleChange } placeholder="Enter email eg. johndoe@mail.com" aria-describedby="email-addon" required="required"/>
                             </div>
                             <div className="form-group">
                                 <input type="password" className="form-control" value={ this.state.password } name="password" id="password" onChange={ this.handleChange } placeholder="Password" aria-describedby="password-addon" required="required"/>
