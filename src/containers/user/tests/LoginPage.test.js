@@ -12,6 +12,16 @@ describe('These are tests for the login form ', () =>{
         }
     }
 
+    it('handles input changed', () => {
+        const wrapper = shallow(<LoginPage />); 
+        wrapper.instance().handleChange(event)
+    })
+
+    it('handles input reset', () => {
+        const wrapper = shallow(<LoginPage />); 
+        wrapper.instance().handleReset(event)
+    })
+    
     it('renders without crashing', () => {
         const wrapper = shallow(<LoginPage />)
         const header = <h3 className="panel-title">Login</h3>

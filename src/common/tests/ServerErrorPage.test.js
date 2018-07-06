@@ -41,4 +41,9 @@ describe('These are tests the server error page', () => {
         expect(wrapper.find('h4').length).toBe(1)
     });
 
+    it('has an i tag', () =>{
+        const wrapper = shallow(<ServerErrorPage />)
+        expect(wrapper.find('i').length).toBe(1)
+    });
+
 });
