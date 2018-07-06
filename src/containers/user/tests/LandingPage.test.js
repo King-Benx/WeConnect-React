@@ -12,6 +12,16 @@ describe('These are tests for the registration form for a user', () =>{
         }
     }
 
+    it('handles input changed', () => {
+        const wrapper = shallow(<LandingPage />); 
+        wrapper.instance().handleChange(event)
+    })
+
+    it('handles input reset', () => {
+        const wrapper = shallow(<LandingPage />); 
+        wrapper.instance().handleReset(event)
+    })
+
     it('renders without crashing', () => {
         const wrapper = shallow(<LandingPage />)
         const header = <h3 className="panel-title">Registration Form</h3>

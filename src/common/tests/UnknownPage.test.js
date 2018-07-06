@@ -41,4 +41,9 @@ describe('These are tests the unknown page', () => {
         expect(wrapper.find('h4').length).toBe(1)
     });
 
+    it('has an i tag', () =>{
+        const wrapper = shallow(<UnknownPage />)
+        expect(wrapper.find('i').length).toBe(1)
+    });
+
 });
