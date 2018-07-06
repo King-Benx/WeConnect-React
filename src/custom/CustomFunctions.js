@@ -1,8 +1,7 @@
-import React from 'react';
-import {NotificationManager} from 'react-notifications';
-import {BASE_URL} from './constants';
+import { NotificationManager } from 'react-notifications';
+import { BASE_URL } from './constants';
 import superagent from 'superagent';
-import { Redirect} from 'react-router-dom';
+// import { Redirect} from 'react-router-dom';
 class CustomFunctions {
     static createNotifications(code, message) {
         switch (code) {
@@ -28,13 +27,14 @@ class CustomFunctions {
         var minutes = timeout; 
         var now = new Date().getTime();
         const stored_data = localStorage.getItem('data');
-        var setupTime = stored_data?JSON.parse(stored_data).setupTime:null;
+        var setupTime = stored_data ? JSON.parse(stored_data).setupTime : null;
         if (setupTime == null) {
             localStorage.clear();
             localStorage.setItem('data',JSON.stringify({'setupTime':now,'token':token}))
         } else {
             if(now-setupTime > minutes*60*1000) {
                 localStorage.clear();
+                localStorage.removeItem('data');
             }
         }
     }
@@ -47,7 +47,7 @@ class CustomFunctions {
             .get(BASE_URL+'api/v1/auth/test_token')
             .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
             .end((err)=>{
-                if(err){return <Redirect to="/login"/>}
+                if(err){ localStorage.clear(); return this.props.history.push('/login'); }
             });
             return stored_token && stored_token.length > 10;
         }else{

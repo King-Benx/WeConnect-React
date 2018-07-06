@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/King-Benx/WeConnect-React.svg?branch=master)](https://travis-ci.org/King-Benx/WeConnect-React)
 # WeConnect
 
 ## DESCRIPTION

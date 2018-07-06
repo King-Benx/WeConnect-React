@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import './main-page.css';
 import NavBar from '../common/NavBar';

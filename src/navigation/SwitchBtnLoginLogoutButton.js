@@ -3,7 +3,7 @@ import CustomFunctions from '../custom/CustomFunctions';
 import Login from '../navigation/Login';
 import Search from '../containers/business/Search';
 import Logout from '../navigation/Logout';
-class LoginLogout extends React.Component{
+class SwitchBtnLoginLogoutButton extends React.Component{
     render(){
     return (
         CustomFunctions.checkAuthentication()?(
@@ -19,4 +19,4 @@ class LoginLogout extends React.Component{
     );
     }
 }
-export default LoginLogout;
+export default SwitchBtnLoginLogoutButton;
