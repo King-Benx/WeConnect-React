@@ -25,7 +25,7 @@ class Businesses extends React.Component{
     componentDidMount(){
         superagent
         .get(BASE_URL+'api/v1/businesses?page='+this.state.page+'&limit='+this.state.limit)
-        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        .set({'x-access-token':CustomFunctions.getToken()})
         .end((err,res)=>{
             if(err){
                 CustomFunctions.createNotifications(err.status,res.body.message)
@@ -40,7 +40,7 @@ class Businesses extends React.Component{
 
         // superagent
         // .get(BASE_URL+'api/v1/businesses')
-        // .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        // .set({'x-access-token':CustomFunctions.getToken()})
         // .end((err,res)=>{
         //     this.setState({number_of_records : res.body.results.businesses.length});
         // });

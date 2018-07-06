@@ -25,7 +25,7 @@ class LoginPage extends React.Component{
             .send({ email:this.state.email, password:this.state.password })
             .end((err,res) => {
                 if(err){ CustomFunctions.createNotifications(err.status, res.body.message); }; 
-                CustomFunctions.storeToken(res.body.message.token, 20)
+                CustomFunctions.storeToken(res.body.message.token)
                 this.setState();
                 this.props.history.push('/dashboard');
             });

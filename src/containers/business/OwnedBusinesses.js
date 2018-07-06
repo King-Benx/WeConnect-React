@@ -37,7 +37,7 @@ class OwnedBusinesses extends React.Component{
     handleShow= (event) => {
         superagent
         .get(BASE_URL+'api/v1/businesses/'+event.target.id)
-        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        .set({'x-access-token':CustomFunctions.getToken()})
         .end((err,res)=>{
             if(err){CustomFunctions.createNotifications(err.status, err.toString())};
             this.setState({
@@ -55,7 +55,7 @@ class OwnedBusinesses extends React.Component{
     componentDidMount(){
         superagent
         .get(BASE_URL+'api/v1/owned_businesses')
-        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        .set({'x-access-token':CustomFunctions.getToken()})
         .end((err,res)=>{
             if(err){CustomFunctions.createNotifications(err.status, res.body.message)};
             if (res.status === 404){
@@ -73,7 +73,7 @@ class OwnedBusinesses extends React.Component{
     deleteBusiness = (event) => {
         superagent
         .del(BASE_URL+'api/v1/businesses/'+event.target.id)
-        .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+        .set({'x-access-token':CustomFunctions.getToken()})
         .end((err,res)=>{
             if(err){CustomFunctions.createNotifications(err.status, err.toString())};
             CustomFunctions.createNotifications(res.status, res.body.message);
@@ -86,7 +86,7 @@ class OwnedBusinesses extends React.Component{
         superagent
             .put(BASE_URL+'api/v1/businesses/'+this.state.business_id)
             .send({name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category})
-            .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+            .set({'x-access-token':CustomFunctions.getToken()})
             .end((err,res)=>{
                 if(err){CustomFunctions.createNotifications(err.status, err.toString());};
                 CustomFunctions.createNotifications(res.status, res.body.message)

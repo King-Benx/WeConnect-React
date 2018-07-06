@@ -26,7 +26,7 @@ class CreateBusiness extends React.Component{
         superagent
             .post(BASE_URL+'api/v1/businesses')
             .send({name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category})
-            .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+            .set({'x-access-token':CustomFunctions.getToken()})
             .end((err,res)=>{
                 if(err){CustomFunctions.createNotifications(err.status, err.toString());};
                 CustomFunctions.createNotifications(res.status, res.body.message)

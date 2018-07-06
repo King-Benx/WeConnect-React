@@ -26,7 +26,7 @@ class Reviews extends React.Component{
     componentDidMount(){
         superagent
         .get(BASE_URL+'api/v1/businesses/'+ this.state.id)
-        .set({ 'x-access-token':JSON.parse(localStorage.getItem('data')).token })
+        .set({ 'x-access-token':CustomFunctions.getToken()})
         .end((err,res) => {
             if(err){ CustomFunctions.createNotifications(err.status, res.body.message) };
             if (res.status === 404){
@@ -38,7 +38,7 @@ class Reviews extends React.Component{
 
         superagent
         .get(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews')
-        .set({ 'x-access-token':JSON.parse(localStorage.getItem('data')).token })
+        .set({ 'x-access-token':CustomFunctions.getToken() })
         .end((err,res) => {
             if(err){ CustomFunctions.createNotifications(err.status, err.toString()) };
             if (res.status === 404){
@@ -54,7 +54,7 @@ class Reviews extends React.Component{
         superagent
             .post(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews')
             .send({ review:this.state.review })
-            .set({'x-access-token':JSON.parse(localStorage.getItem('data')).token})
+            .set({'x-access-token':CustomFunctions.getToken() })
             .end((err,res)=>{
                 if(err){ CustomFunctions.createNotifications(err.status, err.toString()); };
                 CustomFunctions.createNotifications(res.status, res.body.message);
