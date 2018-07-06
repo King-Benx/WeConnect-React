@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/King-Benx/WeConnect-React.svg?branch=master)](https://travis-ci.org/King-Benx/WeConnect-React)
+[![Build Status](https://travis-ci.org/King-Benx/WeConnect-React.svg?branch=master)](https://travis-ci.org/King-Benx/WeConnect-React) [![Coverage Status](https://coveralls.io/repos/github/King-Benx/WeConnect-React/badge.svg?branch=master)](https://coveralls.io/github/King-Benx/WeConnect-React?branch=master)
 # WeConnect
 
 ## DESCRIPTION
