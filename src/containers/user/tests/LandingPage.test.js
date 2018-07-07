@@ -22,6 +22,11 @@ describe('These are tests for the registration form for a user', () =>{
         wrapper.instance().handleReset(event)
     })
 
+    it('handles form submit', () => {
+        const wrapper = shallow(<LandingPage />); 
+        wrapper.instance().formSubmit(event)
+    })
+
     it('renders without crashing', () => {
         const wrapper = shallow(<LandingPage />)
         const header = <h3 className="panel-title">Registration Form</h3>
@@ -31,6 +36,11 @@ describe('These are tests for the registration form for a user', () =>{
     it('has a paragraph', () => {
         const wrapper = shallow(<LandingPage />)
         expect(wrapper.find('p').length).toBe(1)
+    });
+
+    it('has a i', () => {
+        const wrapper = shallow(<LandingPage />)
+        expect(wrapper.find('i').length).toBe(2)
     });
 
     it('has an image', () => {
