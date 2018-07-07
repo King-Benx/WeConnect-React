@@ -15,7 +15,7 @@ class BusinessInfo extends React.Component {
             <h4><b>Business name: </b> <span className="text text-info">{ this.props.business.name }</span></h4>
             <h4><b>Category: </b> <span className="text text-info">{ this.props.business.category }</span></h4>
             <h4><b>Location: </b> <span className="text text-info">{ this.props.business.location }</span></h4>
-            <h4><u>Description</u></h4>
+            <h4><u><b>Description</b></u></h4>
             <p className="text text-info">{ this.props.business.description }</p>
         </div>  )
     }
