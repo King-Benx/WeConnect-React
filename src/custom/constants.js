@@ -1,1 +1,1 @@
-export const BASE_URL = "https://weconnect-reactjs.herokuapp.com/";
+export const BASE_URL = "https://weconnect-api-database.herokuapp.com/";

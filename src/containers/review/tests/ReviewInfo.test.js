@@ -44,6 +44,16 @@ describe('These are tests for the login form ', () =>{
         expect(wrapper.find('hr').length).toBe(1)
     });
 
+    it('has an br', () => {
+        const wrapper = shallow(<ReviewInfo {...props} />)
+        expect(wrapper.find('br').length).toBe(1)
+    });
+
+    it('has an h4', () => {
+        const wrapper = shallow(<ReviewInfo {...props} />)
+        expect(wrapper.find('h4').length).toBe(1)
+    });
+
     it('has an image', () => {
         const wrapper = shallow(<ReviewInfo {...props} />)
         expect(wrapper.find('Image').length).toBe(1)

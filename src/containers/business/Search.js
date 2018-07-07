@@ -20,7 +20,7 @@ class Search extends React.Component{
         event.preventDefault();
         const search_query= "/search/"+this.state.search+"/"+this.state.filter_type+"/"+this.state.filter_value;
         this.context.router.history.push(search_query)
-        this.setState({search:"", filter_type:"",filter_value:"",description:""})
+        this.setState()
     }
 
     render(){
