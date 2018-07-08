@@ -7,5 +7,5 @@ describe('These are tests for the dashboard Navigation', () => {
     it('renders without crashing', () => {
        shallow(<DashboardNavigation />)
     });
-
+    
 });
