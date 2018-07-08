@@ -1,7 +1,7 @@
 import React from 'react';
 import business_image from '../../images/business-3152586_640.jpg';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../../custom/constants';
 import CustomFunctions from '../../custom/CustomFunctions';
@@ -83,7 +83,7 @@ class LandingPage extends React.Component{
                             <p>WeConnect provides a platform that brings businesses and individuals together. This platform creates
                                 awareness for businesses and gives the users the ability to write reviews about the businesses
                                 they have interacted with.</p>
-                            <img src={ business_image } className="img img-responsive" alt=""/>
+                            <Image src={ business_image } responsive/>
                         </div>
                     </div>
                 </div>

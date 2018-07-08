@@ -11,19 +11,24 @@ describe('These are tests the login link', () => {
 
         }
     }
+    let mountedLoginLink;
+
+    beforeEach(()=>{
+        mountedLoginLink= shallow(<Login />);
+    });
 
     it('renders without crashing', () => {
-       shallow(<Login />)
+       mountedLoginLink =  shallow(<Login />)
     });
 
     it('has links', () =>{
-        const wrapper = shallow(<Login />)
-        expect(wrapper.find('Link').length).toBe(1)
+        const links = mountedLoginLink.find('Link')
+        expect(links.length).toBe(1)
     });
 
     it('has a list', () =>{
-        const wrapper = shallow(<Login />)
-        expect(wrapper.find('li').length).toBe(1)
+        const lists = mountedLoginLink.find('li')
+        expect(lists.length).toBe(1)
     });
 
 });

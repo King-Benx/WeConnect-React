@@ -11,14 +11,25 @@ describe('These are tests the logout link', () => {
 
         }
     }
+    
+    let mountedSwitch;
+
+    beforeEach(()=>{
+        mountedSwitch = shallow(<SwitchBtnLoginLogoutButton />);
+    });
 
     it('renders without crashing', () => {
        shallow(<SwitchBtnLoginLogoutButton />)
     });
 
     it('has a ul tag', () =>{
-        const wrapper = shallow(<SwitchBtnLoginLogoutButton />)
-        expect(wrapper.find('ul').length).toBe(1)
+        const uls = mountedSwitch.find('ul');
+        expect(uls.length).toBe(1)
+    });
+
+    it('has a Login', () =>{
+        const login = mountedSwitch.find('Login');
+        expect(login.length).toBe(1)
     });
 
 });

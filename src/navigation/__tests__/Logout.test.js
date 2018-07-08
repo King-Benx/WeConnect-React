@@ -12,18 +12,24 @@ describe('These are tests the logout link', () => {
         }
     }
 
+    let mountedLogoutLink;
+
+    beforeEach(()=>{
+        mountedLogoutLink= shallow(<Logout />);
+    });
+
     it('renders without crashing', () => {
-       shallow(<Logout />)
+       mountedLogoutLink =  shallow(<Logout />)
     });
 
     it('has links', () =>{
-        const wrapper = shallow(<Logout />)
-        expect(wrapper.find('Link').length).toBe(1)
+        const links = mountedLogoutLink.find('Link')
+        expect(links.length).toBe(1)
     });
 
     it('has a list', () =>{
-        const wrapper = shallow(<Logout />)
-        expect(wrapper.find('li').length).toBe(1)
+        const lists = mountedLogoutLink.find('li')
+        expect(lists.length).toBe(1)
     });
 
 });

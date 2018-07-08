@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import LandingPage from "../LandingPage";
 
 describe('These are tests for the registration form for a user', () =>{
+    
     const event={
         target:{
             value:{}
@@ -12,69 +13,71 @@ describe('These are tests for the registration form for a user', () =>{
         }
     }
 
+    let mountedLandingPage;
+
+    beforeEach(()=>{
+        mountedLandingPage= shallow(<LandingPage/>);
+    });
+
+
     it('handles input changed', () => {
-        const wrapper = shallow(<LandingPage />); 
-        wrapper.instance().handleChange(event)
+        mountedLandingPage.instance().handleChange(event)
     })
 
     it('handles input reset', () => {
-        const wrapper = shallow(<LandingPage />); 
-        wrapper.instance().handleReset(event)
+        mountedLandingPage.instance().handleReset(event)
     })
 
     it('handles form submit', () => {
-        const wrapper = shallow(<LandingPage />); 
-        wrapper.instance().formSubmit(event)
+        mountedLandingPage.instance().formSubmit(event)
     })
 
     it('renders without crashing', () => {
-        const wrapper = shallow(<LandingPage />)
-        const header = <h3 className="panel-title">Registration Form</h3>
-        expect(wrapper.contains(header)).toEqual(true);
+        shallow(<LandingPage />)
     });
 
     it('has a paragraph', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('p').length).toBe(1)
+        const paragraphs = mountedLandingPage.find('p')
+        expect(paragraphs.length).toBe(1)
     });
 
     it('has a i', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('i').length).toBe(2)
+        const i_s = mountedLandingPage.find('i')
+        expect(i_s.length).toBe(2)
     });
 
     it('has an image', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('img').length).toBe(1)
+        const images = mountedLandingPage.find('Image')
+        expect(images.length).toBe(1)
     });
 
     it('renders the form', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('form').length).toBe(1)
+        const forms = mountedLandingPage.find('form')
+        expect(forms.length).toBe(1)
     });
 
     it('renders form input', () => {
-        const wrapper = shallow(<LandingPage/>)
-        expect(wrapper.find('input').length).toBe(4)
+        const inputs = mountedLandingPage.find('input')
+        expect(inputs.length).toBe(4)
     });
 
     it('has divs', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('div').length).toBe(15)
+        const divs = mountedLandingPage.find('div')
+        expect(divs.length).toBe(15)
     });
 
     it('has links', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('Link').length).toBe(1)
+        const links = mountedLandingPage.find('Link')
+        expect(links.length).toBe(1)
     });
 
     it('has buttons', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('Button').length).toBe(2)
+        const buttons = mountedLandingPage.find('Button')
+        expect(buttons.length).toBe(2)
     });
 
     it('has an h1', () => {
-        const wrapper = shallow(<LandingPage />)
-        expect(wrapper.find('h1').length).toBe(1)
+        const his = mountedLandingPage.find('h1')
+        expect(his.length).toBe(1)
     });
 });

@@ -20,43 +20,49 @@ describe('These are tests for the login form ', () =>{
         }
     }
 
+    let mountedReviewInfo;
+
+    beforeEach(()=>{
+        mountedReviewInfo = shallow(<ReviewInfo {...props}/>);
+    });
+
     it('renders without crashing', () => {
        shallow(<ReviewInfo {...props} />)
     });
 
     it('has div', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('div').length).toBe(3)
+        const divs = mountedReviewInfo.find('div')
+        expect(divs.length).toBe(3)
     });
 
     it('has a blockquote', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('blockquote').length).toBe(1)
+        const blockquotes = mountedReviewInfo.find('blockquote')
+        expect(blockquotes.length).toBe(1)
     });
 
     it('has small size paragraphs', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('small').length).toBe(1)
+        const smalls = mountedReviewInfo.find('small')
+        expect(smalls.length).toBe(1)
     });
 
     it('has an hr', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('hr').length).toBe(1)
+        const hrs = mountedReviewInfo.find('hr')
+        expect(hrs.length).toBe(1)
     });
 
     it('has an br', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('br').length).toBe(1)
+        const brs = mountedReviewInfo.find('br')
+        expect(brs.length).toBe(1)
     });
 
     it('has an h4', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('h4').length).toBe(1)
+        const h4s = mountedReviewInfo.find('h4')
+        expect(h4s.length).toBe(1)
     });
 
     it('has an image', () => {
-        const wrapper = shallow(<ReviewInfo {...props} />)
-        expect(wrapper.find('Image').length).toBe(1)
+        const images = mountedReviewInfo.find('Image')
+        expect(images.length).toBe(1)
     });
 
 });

@@ -3,20 +3,25 @@ import { shallow } from 'enzyme';
 import Content from "../Content";
 
 describe('These are tests for the content', () =>{
-   
+    let mountedContent;
+
+    beforeEach(()=>{
+        mountedContent= shallow(<Content />);
+    });
+
     it('has divs', () => {
-        const wrapper = shallow(<Content/>)
-        expect(wrapper.find('div').length).toBe(1)
+        const divs = mountedContent.find('div');
+        expect(divs.length).toBe(1)
     });
 
     it('has a switch', () => {
-        const wrapper = shallow(<Content/>)
-        expect(wrapper.find('Switch').length).toBe(1)
+        const switches = mountedContent.find('Switch');
+        expect(switches.length).toBe(1)
     });
 
     it('has routes', () => {
-        const wrapper = shallow(<Content/>)
-        expect(wrapper.find('Route').length).toBe(14)
+        const routes = mountedContent.find('Route');
+        expect(routes.length).toBe(14)
     });
     
 });

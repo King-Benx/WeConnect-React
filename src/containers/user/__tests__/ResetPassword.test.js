@@ -19,19 +19,22 @@ describe('These are tests for the login form ', () =>{
         }
     }
 
+    let mountedResetPassword;
+
+    beforeEach(()=>{
+        mountedResetPassword = shallow(<ResetPassword/>);
+    });
+
     it('handles input changed', () => {
-        const wrapper = shallow(<ResetPassword />); 
-        wrapper.instance().handleChange(event)
+        mountedResetPassword.instance().handleChange(event)
     })
 
     it('handles input reset', () => {
-        const wrapper = shallow(<ResetPassword />); 
-        wrapper.instance().handleReset(event)
+        mountedResetPassword.instance().handleReset(event)
     })
 
     it('handles submit form', () => {
-        const wrapper = shallow(<ResetPassword />); 
-        wrapper.instance().formSubmit(event)
+        mountedResetPassword.instance().formSubmit(event)
     })
 
 
@@ -39,10 +42,10 @@ describe('These are tests for the login form ', () =>{
         shallow(<ResetPassword  />)
     });
 
-    // it('has an image', () => {
-    //     const wrapper = shallow(<ResetPassword />)
-    //     expect(wrapper.find('Image').length).toBe(1)
-    // });
+    it('has a redirect', () => {
+        const redirects = mountedResetPassword.find('Redirect')
+        expect(redirects.length).toBe(1)
+    });
 
     // it('renders the form', () => {
     //     const wrapper = shallow(<ResetPassword />)

@@ -12,54 +12,61 @@ describe('These are tests for the login form ', () =>{
         }
     }
 
+    let mountedLoginPage;
+
+    beforeEach(()=>{
+        mountedLoginPage= shallow(<LoginPage/>);
+    });
+
     it('handles input changed', () => {
-        const wrapper = shallow(<LoginPage />); 
-        wrapper.instance().handleChange(event)
+        mountedLoginPage.instance().handleChange(event)
     })
 
     it('handles input reset', () => {
-        const wrapper = shallow(<LoginPage />); 
-        wrapper.instance().handleReset(event)
+        mountedLoginPage.instance().handleReset(event)
     })
     
     it('renders without crashing', () => {
-        const wrapper = shallow(<LoginPage />)
-        const header = <h3 className="panel-title">Login</h3>
-        expect(wrapper.contains(header)).toEqual(true);
+        shallow(<LoginPage />)
     });
+
+    it('has an h3', ()=>{
+        const h3s = mountedLoginPage.find('h3')
+        expect(h3s.length).toBe(1)
+    })
 
     it('has an em', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('em').length).toBe(1)
+        const ems = mountedLoginPage.find('em')
+        expect(ems.length).toBe(1)
     });
 
-    it('has a heading', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('h1').length).toBe(1)
+    it('has ah h1', () => {
+        const his = mountedLoginPage.find('h1')
+        expect(his.length).toBe(1)
     });
 
     it('renders the form', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('form').length).toBe(1)
+        const forms = mountedLoginPage.find('form')
+        expect(forms.length).toBe(1)
     });
 
     it('renders form input', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('input').length).toBe(2)
+        const inputs = mountedLoginPage.find('input')
+        expect(inputs.length).toBe(2)
     });
 
     it('has divs', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('div').length).toBe(9)
+        const divs = mountedLoginPage.find('div')
+        expect(divs.length).toBe(9)
     });
 
     it('has links', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('Link').length).toBe(1)
+        const links = mountedLoginPage.find('Link')
+        expect(links.length).toBe(1)
     });
 
     it('has buttons', () => {
-        const wrapper = shallow(<LoginPage />)
-        expect(wrapper.find('Button').length).toBe(2)
+        const buttons = mountedLoginPage.find('Button')
+        expect(buttons.length).toBe(2)
     });
 });
