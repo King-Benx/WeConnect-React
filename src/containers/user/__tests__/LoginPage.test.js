@@ -15,7 +15,7 @@ describe('These are tests for the login form ', () =>{
     let mountedLoginPage;
 
     beforeEach(()=>{
-        mountedLoginPage= shallow(<LoginPage/>);
+        mountedLoginPage= shallow(<LoginPage history={{push: ()=>{}}}/>);
     });
 
     it('handles input changed', () => {
@@ -24,6 +24,10 @@ describe('These are tests for the login form ', () =>{
 
     it('handles input reset', () => {
         mountedLoginPage.instance().handleReset(event)
+    })
+
+    it('handles form submit', () => {
+        mountedLoginPage.instance().formSubmit(event)
     })
     
     it('renders without crashing', () => {

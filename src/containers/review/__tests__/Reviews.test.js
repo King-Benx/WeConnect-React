@@ -61,4 +61,34 @@ describe('These are tests for the review form ', () =>{
         expect(forms.length).toBe(1)
     });
 
+    it('has a dashboard',() =>{
+        const dashboards = mountedReviews.find('DashboardNavigation')
+        expect(dashboards.length).toBe(1)
+    });
+
+    it('has business info',() =>{
+        const business_info = mountedReviews.find('BusinessInfo')
+        expect(business_info.length).toBe(1)
+    });
+
+    it('has buttons',() =>{
+        const buttons = mountedReviews.find('Button')
+        expect(buttons.length).toBe(1)
+    });
+
+    it('has a textarea',() =>{
+        const textareas = mountedReviews.find('textarea')
+        expect(textareas.length).toBe(1)
+    });
+
+    it('has divs',() =>{
+        const divs = mountedReviews.find('div')
+        expect(divs.length).toBe(10)
+    });
+
+    it('has a legend',() =>{
+        const legends = mountedReviews.find('legend')
+        expect(legends.length).toBe(1)
+    });
+
 });
