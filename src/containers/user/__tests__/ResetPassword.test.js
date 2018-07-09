@@ -42,33 +42,44 @@ describe('These are tests for the login form ', () =>{
         shallow(<ResetPassword  />)
     });
 
-    it('has a redirect', () => {
-        const redirects = mountedResetPassword.find('Redirect')
-        expect(redirects.length).toBe(1)
+
+    it('renders the form', () => {
+        const forms = mountedResetPassword.find('form')
+        expect(forms.length).toBe(1)
     });
 
-    // it('renders the form', () => {
-    //     const wrapper = shallow(<ResetPassword />)
-    //     expect(wrapper.find('form').length).toBe(1)
-    // });
+    it('renders form input', () => {
+        const inputs = mountedResetPassword.find('input')
+        expect(inputs.length).toBe(2)
+    });
 
-    // it('renders form input', () => {
-    //     const wrapper = shallow(<ResetPassword/>)
-    //     expect(wrapper.find('input').length).toBe(2)
-    // });
+    it('has divs', () => {
+        const divs = mountedResetPassword.find('div')
+        expect(divs.length).toBe(11)
+    });
 
-    // it('has divs', () => {
-    //     const wrapper = shallow(<ResetPassword />)
-    //     expect(wrapper.find('div').length).toBe(6)
-    // });
+    it('has buttons', () => {
+        const buttons = mountedResetPassword.find('Button')
+        expect(buttons.length).toBe(2)
+    });
 
-    // it('has buttons', () => {
-    //     const wrapper = shallow(<ResetPassword />)
-    //     expect(wrapper.find('Link').length).toBe(2)
-    // });
+    it('has a legend', () => {
+        const legends = mountedResetPassword.find('legend')
+        expect(legends.length).toBe(1)
+    });
 
-    // it('has buttons', () => {
-    //     const wrapper = shallow(<LoginPage />)
-    //     expect(wrapper.find('Button').length).toBe(2)
-    // });
+    it('has an image', () => {
+        const images = mountedResetPassword.find('Image')
+        expect(images.length).toBe(1)
+    });
+
+    it('has an em', () => {
+        const ems = mountedResetPassword.find('em')
+        expect(ems.length).toBe(1)
+    });
+
+    it('has i tags', () => {
+        const i_s = mountedResetPassword.find('i')
+        expect(i_s.length).toBe(2)
+    });
 });

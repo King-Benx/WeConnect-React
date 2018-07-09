@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import reset_password from '../../images/reset_password.png';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
 import CustomFunctions from '../../custom/CustomFunctions';
@@ -46,8 +45,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        return (
-            CustomFunctions.checkAuthentication() ? (   
+        return ( 
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
@@ -80,7 +78,6 @@ class Dashboard extends React.Component{
                     </div>
                 </div>
             </div>
-            ): <Redirect to={{ pathname:'/login' }}/>
         );
     }
 }

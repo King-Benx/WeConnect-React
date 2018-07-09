@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import CustomFunctions from '../../custom/CustomFunctions';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
@@ -70,7 +69,6 @@ class Reviews extends React.Component{
             );
         }));   
         return (
-                CustomFunctions.checkAuthentication()? (   
                 <div className="row"> 
                     <DashboardNavigation/>
                     <div className="col-sm-9 content-wrapper">
@@ -99,7 +97,6 @@ class Reviews extends React.Component{
                             </div>    
                         </div>
                     </div>
-                ): <Redirect to={{pathname:'/login'}}/>
             );
 
     }

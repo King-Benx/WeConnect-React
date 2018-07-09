@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 import { Button, Table} from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../../custom/constants';
@@ -55,7 +54,6 @@ class SearchResults extends React.Component{
             );
         }));
         return (
-            CustomFunctions.checkAuthentication()? (   
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
@@ -87,7 +85,6 @@ class SearchResults extends React.Component{
                     </div>
                 </div>
             </div>
-            ): <Redirect to={{ pathname:'/login' }}/>
         );
     }
 }

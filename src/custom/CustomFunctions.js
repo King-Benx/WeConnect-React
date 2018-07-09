@@ -35,6 +35,11 @@ class CustomFunctions {
     static getToken(){
         return localStorage.getItem('token')
     }
+
+    static deleteToken(){
+        localStorage.removeItem('token')
+        return true
+    }
 }
 
 export default CustomFunctions;

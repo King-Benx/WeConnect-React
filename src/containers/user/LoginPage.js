@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import superagent from 'superagent';
 import { BASE_URL } from '../../custom/constants';
@@ -33,7 +33,6 @@ class LoginPage extends React.Component{
 
     render(){
         return ( 
-            CustomFunctions.checkAuthentication()? <Redirect to={{ pathname:'/dashboard' }}/>:
             <div className="row">
                 <h1 className="text-center">
                     <em>WeConnect</em>

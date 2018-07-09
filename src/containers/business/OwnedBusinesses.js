@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Modal, Button, Table } from 'react-bootstrap';
 import superagent from 'superagent';
 import CustomFunctions from '../../custom/CustomFunctions';
@@ -120,8 +119,7 @@ class OwnedBusinesses extends React.Component{
                 </tr>
             );
         }));
-        return (
-            CustomFunctions.checkAuthentication()? (   
+        return ( 
             <div className="row"> 
                 <DashboardNavigation/>
                 <div className="col-sm-9 content-wrapper">
@@ -185,7 +183,6 @@ class OwnedBusinesses extends React.Component{
                     </div>
                 </div>
             </div>
-            ): <Redirect to={{ pathname:'/login' }}/>
         );
     }
 }

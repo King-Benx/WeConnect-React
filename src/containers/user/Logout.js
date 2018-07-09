@@ -10,7 +10,8 @@ const Logout = ()=>{
           CustomFunctions.createNotifications(res.status,res.body.message);
     });
     localStorage.clear();
-    localStorage.removeItem('data');
-    return  <Redirect to="/"/>;
+    if (CustomFunctions.deleteToken()){
+        return  <Redirect to="/"/>;
+    }
 }
 export default Logout;

@@ -15,7 +15,7 @@ describe('These are tests for the registration form for a user', () =>{
 
     let mountedLandingPage;
 
-    beforeEach(()=>{
+    beforeEach(() => {
         mountedLandingPage= shallow(<LandingPage/>);
     });
 
