@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom collectCoverageFrom=src/**/*js  --collectCoverageFrom=!src/index.js",
+    "test": "react-scripts test --env=jsdom collectCoverageFrom=src/  --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/setupTests.js  --collectCoverageFrom=!src/custom/constants.js --collectCoverageFrom=!src/custom/CustomFunctions.js",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
