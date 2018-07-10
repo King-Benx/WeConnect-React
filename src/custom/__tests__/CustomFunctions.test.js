@@ -34,4 +34,8 @@ describe('These are tests for Custom Functions ', () =>{
         expect(CustomFunctions.deleteToken()).toEqual(true);
     })
 
+    // it('can can authenticate',()=>{
+    //     expect(CustomFunctions.checkAuthentication()).toEqual(false);
+    // })
+   
 })
