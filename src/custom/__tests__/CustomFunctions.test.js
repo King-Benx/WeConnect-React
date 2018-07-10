@@ -40,7 +40,7 @@ describe('These are tests for Custom Functions ', () =>{
 
     // Testing the Notifications 
     it('handles a 200 response',()=>{
-        expect(CustomFunctions.createNotifications(200,'success')).toEqual(NotificationManager.success(message, 'Success'));
+        expect(CustomFunctions.createNotifications(200,'success')).toEqual(NotificationManager.success('Success'));
     })
 
     it('handles a 404 response',()=>{
