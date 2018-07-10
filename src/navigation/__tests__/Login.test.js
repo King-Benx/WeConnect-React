@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Login from "../Login";
+import renderer from 'react-test-renderer';
 
 describe('These are tests the login link', () => {
     const event={
@@ -18,7 +19,9 @@ describe('These are tests the login link', () => {
     });
 
     it('renders without crashing', () => {
-       mountedLoginLink =  shallow(<Login />)
+        mountedLoginLink =  shallow(<Login />)
+        const tree = renderer.create(<Login />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
     it('has links', () =>{

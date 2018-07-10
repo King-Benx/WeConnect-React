@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Table } from 'react-bootstrap';
-import superagent from 'superagent';
+import { Button, Table, Pagination } from 'react-bootstrap';
+import axios from 'axios';
 import { BASE_URL } from '../../custom/constants';
 import CustomFunctions from '../../custom/CustomFunctions';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
@@ -11,50 +11,52 @@ class Businesses extends React.Component{
         super();
         this.state = {
             all_businesses:[],
-            page:'',
+            page_limit:'',
             limit:'',
-            number_of_records: ''
+            number_of_records: '',
+            page_numbers:'',
         }
     }
     
-    showReviews = (event) => {
+    showReviews = (event) => { 
+        // redirects to reviews of a particular business
         this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
     }
 
     componentDidMount(){
-        superagent
-        .get(BASE_URL+'api/v1/businesses?page='+this.state.page+'&limit='+this.state.limit)
-        .set({'x-access-token':CustomFunctions.getToken()})
-        .end((err,res)=>{
-            if(err){
-                CustomFunctions.createNotifications(err.status,res.body.message)
-            };
+        // populates the business tables
+        axios
+        .get(BASE_URL+'api/v1/businesses?page='+this.state.page+'&limit='+this.state.page_limit,
+        {headers: {'x-access-token':CustomFunctions.getToken()}}
+        )
+        .then(res =>{
             if (res.status === 404){
                 this.setState({all_businesses:[]});
             }else if(res.status === 200){
-                console.log(res.body.results.businesses.length)
-                this.setState({all_businesses : res.body.results.businesses});
+                this.setState({all_businesses : res.data.results.businesses});
             }
+        })
+        .catch(err => {
+            CustomFunctions.createNotifications(err.status,err.response.message)
         });
 
-        // superagent
-        // .get(BASE_URL+'api/v1/businesses')
-        // .set({'x-access-token':CustomFunctions.getToken()})
-        // .end((err,res)=>{
-        //     this.setState({number_of_records : res.body.results.businesses.length});
-        // });
+        axios
+        .get(BASE_URL+'api/v1/businesses',{headers:{'x-access-token':CustomFunctions.getToken()}})
+        .then(res => {
+            this.setState({number_of_records : res.data.results.businesses.length})
+        });
 
     }
 
-    // handlePageLimit = (event) => {
-    //     this.setState({limit: event.target.id, page_numbers: Math.ceil(this.state.number_of_records/ Number(event.target.id))})
-    //     this.componentDidMount()
-    // }
+    handlePageLimit = (event) => {
+        this.setState({page_limit:event.target.value, limit: event.target.value, page_numbers: Math.ceil(this.state.number_of_records/ Number(event.target.value))})
+        this.componentDidMount()
+    }
 
-    // handlePageChange = (event) => {
-    //     this.setState({ page: event.target.value, limit:this.state.limit })
-    //     this.componentDidMount()
-    // }
+    handlePageChange = (event) => {
+        this.setState({ page: event.target.value })
+        this.componentDidMount()
+    }
 
     render(){
         const table_data = this.state.all_businesses.map(((business)=>{
@@ -67,28 +69,28 @@ class Businesses extends React.Component{
                     <td>{business.description}</td>
                     <td>
                         <Button id={business.id} onClick={this.showReviews} bsStyle="info" block>
-                            <i className="glyphicon glyphicon-info-sign"></i> View
+                            <i className="glyphicon glyphicon-info-sign" id={business.id} onClick={this.showReviews}></i> View
                         </Button>
                     </td>
                 </tr>
             );
         }));
 
-        // const iterator = [];
-        // if (this.state.limit !== 0){
-        //     for (let i=1; i<= this.state.page_numbers; i ++){
-        //         iterator.push(i);
-        //     }
-        // }
-        // else{
-        //     iterator.push(1);
-        // }
+        const iterator = [];
+        if (this.state.limit !== 0){
+            for (let i=1; i<= this.state.page_numbers; i ++){
+                iterator.push(i);
+            }
+        }
+        else{
+            iterator.push(1);
+        }
 
-        // const pagination_data = iterator.map((number) => {
-        //     return(
-        //         <Pagination.Item key={number} onClick={ this.handlePageChange } value={ number }>{ number }</Pagination.Item>
-        //     );
-        // });
+        const pagination_data = iterator.map((number) => {
+            return(
+                <Pagination.Item key={number} onClick={ this.handlePageChange } value={ number }>{ number }</Pagination.Item>
+            );
+        });
 
         return (  
             <div className="row"> 
@@ -101,10 +103,18 @@ class Businesses extends React.Component{
                     </div>
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            {/* <div className="row text-right">
-                                <input type="number" min="1" value={this.state.limit } onChange={ this.handlePageLimit } />
+                            <div className="row text-right">
+                                <div className="col-xs-6"></div>
+                                <div className="col-xs-6 ">
+                                    <select className="form-control" id="limit" onChange={this.handlePageLimit}>
+                                        <option>Limit records per page</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
                             </div>
-                            <br/> */}
+                            <br/>
                             <div className="clearfix"></div>
                             <div className="table-responsive">
                                 <Table striped bordered condensed hover>
@@ -123,13 +133,13 @@ class Businesses extends React.Component{
                                     </tbody>
                                 </Table>
                             </div>
-                            {/* <div className="row text-center">
+                            <div className="row text-center">
                                 <Pagination>
                                     <Pagination.Prev />
                                         { pagination_data } 
                                     <Pagination.Next />
                                 </Pagination>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>

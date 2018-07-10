@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`These are tests for the businesses info page  renders without crashing 1`] = `
+<div
+  className="col-xs-12"
+>
+  <img
+    alt=""
+    className="img-responsive img-thumbnail"
+    src="briefcase.ico"
+  />
+  <h4>
+    <b>
+      Business name: 
+    </b>
+     
+    <span
+      className="text text-info"
+    />
+  </h4>
+  <h4>
+    <b>
+      Category: 
+    </b>
+     
+    <span
+      className="text text-info"
+    />
+  </h4>
+  <h4>
+    <b>
+      Location: 
+    </b>
+     
+    <span
+      className="text text-info"
+    />
+  </h4>
+  <h4>
+    <u>
+      <b>
+        Description
+      </b>
+    </u>
+  </h4>
+  <p
+    className="text text-info"
+  />
+</div>
+`;

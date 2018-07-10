@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import CustomFunctions from '../../custom/CustomFunctions';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
 import { BASE_URL } from '../../custom/constants';
-import superagent from 'superagent';
+import axios from 'axios';
 import BusinessInfo from '../business/BusinessInfo';
 import ReviewInfo from './ReviewInfo';
 
@@ -19,51 +19,60 @@ class Reviews extends React.Component{
     }
 
     handleChange = (event) => {
+        // handles change of state on input change
         this.setState({[event.target.id]: event.target.value});
     }
 
     componentDidMount(){
-        superagent
-        .get(BASE_URL+'api/v1/businesses/'+ this.state.id)
-        .set({ 'x-access-token':CustomFunctions.getToken()})
-        .end((err,res) => {
-            if(err){ CustomFunctions.createNotifications(err.status, res.body.message) };
+        // populates the business information and the reviews
+        axios
+        .get(BASE_URL+'api/v1/businesses/'+ this.state.id, 
+        {headers:{ 'x-access-token':CustomFunctions.getToken()}})
+        .then(res => {
             if (res.status === 404){
                 this.setState({ business:[] });
             }else if(res.status === 200){
-                this.setState({ business:res.body.business_info });
+                this.setState({ business:res.data.business_info });
             }
+        })
+        .catch(err => {
+            CustomFunctions.createNotifications(err.status, err.response.data.message);      
         });
 
-        superagent
-        .get(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews')
-        .set({ 'x-access-token':CustomFunctions.getToken() })
-        .end((err,res) => {
-            if(err){ CustomFunctions.createNotifications(err.status, err.toString()) };
+        axios
+        .get(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews',
+         {headers:{ 'x-access-token':CustomFunctions.getToken()}})
+         .then(res => {
             if (res.status === 404){
                 this.setState({ reviews:[] });
             }else if(res.status === 200){
-                this.setState({ reviews:res.body.reviews.business_reviews });
+                this.setState({ reviews:res.data.reviews.business_reviews });
             }
+         })
+        .catch(err => {
+            CustomFunctions.createNotifications(err.status, err.response.data.message);     
         });
     };
 
     formSubmit = (event) => {
+        // handles form submit of the reviews
         event.preventDefault();
-        superagent
-            .post(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews')
-            .send({ review:this.state.review })
-            .set({'x-access-token':CustomFunctions.getToken() })
-            .end((err,res)=>{
-                if(err){ CustomFunctions.createNotifications(err.status, err.toString()); };
-                CustomFunctions.createNotifications(res.status, res.body.message);
+        axios
+            .post(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews', { review:this.state.review },
+            {headers:{ 'x-access-token':CustomFunctions.getToken()}})
+            .then(res => {
+                CustomFunctions.createNotifications(res.status, res.data.message);
                 this.setState({ review:"" });
                 this.componentDidMount();
-        });
+            })
+            .catch(err => {
+                CustomFunctions.createNotifications(err.status, err.response.data.message);
+            });
     }
 
      render(){
-        const div_data= this.state.reviews.map(((review)=>{
+        const div_data= this.state.reviews.map(((review)=>{ 
+            // iterates through the reviews object
             return(
                 <ReviewInfo review={ review }/>
             );
@@ -88,7 +97,7 @@ class Reviews extends React.Component{
                                                 <textarea name="review" id="review" value={ this.state.review } onChange={ this.handleChange } className="form-control" required="required" placeholder="Leave Review Here" ></textarea>
                                             </div>
                                             <div className="col-sm-3">
-                                                <Button type="submit" bsStyle="success" block><i className="glyphicon glyphicon-plus"></i> Add Review</Button>
+                                                <Button type="submit" bsStyle="success" block><i className="glyphicon glyphicon-plus" type="submit"></i> Add Review</Button>
                                             </div>
                                         </div>
                                     </div>

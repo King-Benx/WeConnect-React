@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`These are tests the logout link renders without crashing 1`] = `
+<ul
+  className="nav navbar-nav navbar-right"
+>
+  <li>
+    <a
+      href="/login"
+      onClick={[Function]}
+    >
+      <b>
+        <i
+          className="glyphicon glyphicon-log-in"
+        />
+         Login
+      </b>
+    </a>
+  </li>
+</ul>
+`;

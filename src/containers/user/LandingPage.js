@@ -2,7 +2,7 @@ import React from 'react';
 import business_image from '../../images/business-3152586_640.jpg';
 import { Link } from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
-import superagent from 'superagent';
+import axios from 'axios';
 import { BASE_URL } from '../../custom/constants';
 import CustomFunctions from '../../custom/CustomFunctions';
 
@@ -14,24 +14,29 @@ class LandingPage extends React.Component{
 
 
     handleChange = (event) => {
+        // handles change of state when input changes
         this.setState({ [event.target.id]: event.target.value });
     }
     
     handleReset = (event) => {
+        // handles reset of registration form
         this.setState({username:"", email:"",password:"",confirm_password:""});
     }
 
     formSubmit = (event) => {
+        // handles form submit 
         event.preventDefault();
         if (this.state.password === this.state.confirm_password){
             if (this.state.password.length > 4){
-                superagent
-                    .post(BASE_URL+'api/v1/auth/register')
-                    .send({ username:this.state.username, email:this.state.email, password:this.state.password })
-                    .end((err,res)=>{
-                        if(err){ CustomFunctions.createNotifications(err.status, err.toString()) }; 
-                        CustomFunctions.createNotifications(res.status,res.body.message);
+                axios
+                    .post(BASE_URL+'api/v1/auth/register',
+                    { username:this.state.username, email:this.state.email, password:this.state.password })
+                    .then(res => {
+                        CustomFunctions.createNotifications(res.status,res.data.message);
                         this.props.history.replace('/login');
+                    })
+                    .catch(err =>{
+                        CustomFunctions.createNotifications(err.status, err.response.data.message); 
                     });
                 }else{
                     CustomFunctions.createNotifications(400,'Password too short!');

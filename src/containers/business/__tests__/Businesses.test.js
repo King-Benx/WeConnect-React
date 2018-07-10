@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Businesses from "../Businesses";
+import renderer from 'react-test-renderer';
+import axios from '../../../../__mocks__/axios'
 
 describe('These are tests for the businesses page ', () =>{
 
@@ -11,11 +13,19 @@ describe('These are tests for the businesses page ', () =>{
 
     it('renders without crashing', () => {
        shallow(<Businesses />)
+       const tree = renderer.create(<Businesses />).toJSON();
+       expect(tree).toMatchSnapshot();
     });
 
     it('component did mount', () => {
        mountedBusinesses.instance().componentDidMount()
     })
+
+    // it('calls axios.get in #componentDidMount', () => {
+    //     return mountedBusinesses.instance().componentDidMount().then(()=>{
+    //         expect(axios.get).toHaveBeenCalled()
+    //     })
+    // })
 
     it('has a dashboard', () => {
         const dashboards = mountedBusinesses.find('DashboardNavigation');
@@ -29,7 +39,7 @@ describe('These are tests for the businesses page ', () =>{
 
      it('has divs', () => {
         const divs = mountedBusinesses.find('div');
-        expect(divs.length).toBe(7)
+        expect(divs.length).toBe(11)
      })
 
      it('has h3', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Table} from 'react-bootstrap';
-import superagent from 'superagent';
+import axios from 'axios';
 import { BASE_URL } from '../../custom/constants';
 import CustomFunctions from '../../custom/CustomFunctions';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
@@ -8,32 +8,35 @@ import DashboardNavigation from '../../navigation/DashboardNavigation';
 class SearchResults extends React.Component{
     
     constructor(props){
-        super();
+        super(props);
         this.state = {
             all_businesses:[],
             q:props.match.params.search,
             filter_type:props.match.params.filter_type,
             filter_value:props.match.params.filter_value,
         }
+        this.componentDidMount()
     }
     
     showReviews = (event) => {
+        // handles redirect to the reviews of particular business
         this.props.history.push('/all_businesses/'+ event.target.id +'/reviews');
     }
 
     componentDidMount(){
-        superagent
-        .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+ this.state.filter_type +'&filter_value='+ this.state.filter_value)
-        .set({ 'x-access-token':CustomFunctions.getToken() })
-        .end((err,res)=>{
-            if(err){
-                CustomFunctions.createNotifications(err.status,err.toString())
-            };
+        // populates the table with search results
+        axios
+        .get(BASE_URL+'api/v1/businesses/search?q='+this.state.q+'&filter_type='+ this.state.filter_type +'&filter_value='+ this.state.filter_value,
+        {headers:{ 'x-access-token':CustomFunctions.getToken() }})
+        .then(res => {
             if (res.status === 404){
                 this.setState({ all_businesses:[] });
             }else if(res.status === 200){
-                this.setState({ all_businesses:res.body.results.searched_businesses });
+                this.setState({ all_businesses:res.data.results.searched_businesses });
             }
+        })
+        .catch(err =>{
+            CustomFunctions.createNotifications(err.status, err.response.message);
         });
     }
     render(){
@@ -47,7 +50,7 @@ class SearchResults extends React.Component{
                     <td>{ business.description }</td>
                     <td>
                         <Button id={business.id} onClick={ this.showReviews } bsStyle="info" block>
-                            <i className="glyphicon glyphicon-info-sign"></i> View
+                            <i className="glyphicon glyphicon-info-sign" id={business.id} onClick={ this.showReviews }></i> View
                         </Button>
                     </td>
                 </tr>
@@ -59,7 +62,7 @@ class SearchResults extends React.Component{
                 <div className="col-sm-9 content-wrapper">
                     <div className="panel-heading">
                         <h3 className="panel-title">
-                            <b>All Registered Businesses</b>
+                            <b>Search Results</b>
                         </h3>
                     </div>
                     <div className="panel panel-default">

@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
 class Search extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {search:"", filter_type:"",filter_value:"",description:""}
+    constructor(){
+        super();
+        this.state = {search:"", filter_type:"",filter_value:""}
     }
 
     static contextTypes = {
@@ -13,14 +13,16 @@ class Search extends React.Component{
     }
     
     handleChange = (event) => {
+        // handles change of state on input change
         this.setState({[event.target.id]: event.target.value});
     }
 
     formSubmit = (event) => {
+        // handles submit of the search
         event.preventDefault();
         const search_query= "/search/"+this.state.search+"/"+this.state.filter_type+"/"+this.state.filter_value;
         this.context.router.history.push(search_query)
-        this.setState()
+        this.setState({search:"", filter_type:"",filter_value:""})
     }
 
     render(){
@@ -40,7 +42,7 @@ class Search extends React.Component{
                 <div className="form-group">
                     <input type="text" id="search" value={ this.state.search } onChange={ this.handleChange } className="form-control" placeholder="Search" required="required"/>|
                 </div>
-                <Button bsStyle="info" type="submit" onChange={ this.handleChange } className="btn btn-default"><i className="glyphicon glyphicon-search"></i></Button>
+                <Button bsStyle="info" type="submit" className="btn btn-default"><i className="glyphicon glyphicon-search" type="submit"></i></Button>
             </form>
         </li>
         );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import CustomFunctions from '../../custom/CustomFunctions';
-import superagent from 'superagent';
+import axios from 'axios';
 import {BASE_URL} from '../../custom/constants';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
 
@@ -13,23 +13,28 @@ class CreateBusiness extends React.Component{
 
 
     handleChange = (event) => {
+        // changes state on input change
         this.setState({[event.target.id]: event.target.value});
     }
     
     handleReset = (event) => {
+        // resets the create business form
         this.setState({name:"", location:"",category:"",description:""});
     }
 
     formSubmit = (event) => {
+        // handles form submit
         event.preventDefault();
-        superagent
-            .post(BASE_URL+'api/v1/businesses')
-            .send({name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category})
-            .set({'x-access-token':CustomFunctions.getToken()})
-            .end((err,res)=>{
-                if(err){CustomFunctions.createNotifications(err.status, err.toString());};
-                CustomFunctions.createNotifications(res.status, res.body.message)
+        axios
+            .post(BASE_URL+'api/v1/businesses',
+            {name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category},
+            {headers: {'x-access-token':CustomFunctions.getToken()}})
+            .then(res => {
+                CustomFunctions.createNotifications(res.status, res.data.message);
                 this.props.history.replace('/owned_businesses');
+            })
+            .catch(err => {
+               CustomFunctions.createNotifications(err.status, err.response.data.message);         
             });
     }
     render(){

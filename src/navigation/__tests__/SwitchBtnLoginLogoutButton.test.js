@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SwitchBtnLoginLogoutButton from "../SwitchBtnLoginLogoutButton";
+import renderer from 'react-test-renderer';
 
 describe('These are tests the logout link', () => {
     const event={
@@ -19,7 +20,9 @@ describe('These are tests the logout link', () => {
     });
 
     it('renders without crashing', () => {
-       shallow(<SwitchBtnLoginLogoutButton />)
+        shallow(<SwitchBtnLoginLogoutButton />)
+        const tree = renderer.create(<SwitchBtnLoginLogoutButton />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
     it('has a ul tag', () =>{

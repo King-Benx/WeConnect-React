@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`These are tests for the registration form for a user renders without crashing 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right"
+  >
+    <div
+      className="panel panel-info"
+    >
+      <div
+        className="panel-heading"
+      >
+        <h3
+          className="panel-title"
+        >
+          Registration Form
+        </h3>
+      </div>
+      <div
+        className="panel-body"
+      >
+        <form
+          className="form"
+          method="POST"
+          onSubmit={[Function]}
+        >
+          <div
+            className="form-group"
+          >
+            <input
+              className="form-control"
+              id="username"
+              name="username"
+              onChange={[Function]}
+              placeholder="Username"
+              required="required"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <input
+              aria-describedby="email-addon"
+              className="form-control"
+              id="email"
+              name="email"
+              onChange={[Function]}
+              placeholder="johndoe@mail.com"
+              required="required"
+              type="email"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <input
+              aria-describedby="password-addon"
+              className="form-control"
+              id="password"
+              name="password"
+              onChange={[Function]}
+              placeholder="Password"
+              required="required"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <input
+              aria-describedby="confirm_password-addon"
+              className="form-control"
+              id="confirm_password"
+              name="confirm_password"
+              onChange={[Function]}
+              placeholder="Confirm Password"
+              required="required"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <button
+              className="pull-left btn btn-default"
+              disabled={false}
+              onClick={[Function]}
+              type="reset"
+            >
+              <i
+                className="glyphicon glyphicon-refresh"
+              />
+               Reset
+            </button>
+            <button
+              className="pull-right btn btn-primary"
+              disabled={false}
+              type="submit"
+            >
+              <i
+                className="glyphicon glyphicon-plus-sign"
+              />
+               Register
+            </button>
+            <div
+              className="clearfix"
+            />
+          </div>
+        </form>
+        <div
+          className="text-center"
+        >
+          <a
+            href="/login"
+            onClick={[Function]}
+          >
+            Already a member? Login Here!
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="col-lg-8 col-md-8 col-sm-6 col-xs-12 pull-left"
+  >
+    <div
+      className="jumbotron"
+    >
+      <div
+        className="container"
+      >
+        <h1>
+          Welcome to WeConnect
+        </h1>
+        <p>
+          WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with.
+        </p>
+        <img
+          className="img-responsive"
+          src="business-3152586_640.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

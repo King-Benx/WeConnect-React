@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
-import superagent from 'superagent';
+import axios from 'axios';
 import { BASE_URL } from '../../custom/constants';
 import CustomFunctions from '../../custom/CustomFunctions';
 class LoginPage extends React.Component{
@@ -11,23 +11,27 @@ class LoginPage extends React.Component{
     }
 
     handleChange = (event) => {
+        // handles change of state on input change
         this.setState({ [event.target.id]: event.target.value });
     }
 
     handleReset = (event) => {
+        // handles reset of the login form
         this.setState({ email:"",password:"" });
     }
 
     formSubmit= (event) => {
+        // handles form submit of login page
         event.preventDefault();
-        superagent
-            .post(BASE_URL+'api/v1/auth/login')
-            .send({ email:this.state.email, password:this.state.password })
-            .end((err,res) => {
-                if(err){ CustomFunctions.createNotifications(err.status, res.body.message); }; 
-                CustomFunctions.storeToken(res.body.message.token)
+        axios
+            .post(BASE_URL+'api/v1/auth/login',{ email:this.state.email, password:this.state.password })
+            .then(res => {
+                CustomFunctions.storeToken(res.data.message.token)
                 this.setState();
                 this.props.history.push('/dashboard');
+            })
+            .catch(err => {
+                CustomFunctions.createNotifications(err.status, err.response.data.message);  
             });
     }
 

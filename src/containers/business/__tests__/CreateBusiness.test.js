@@ -32,9 +32,9 @@ describe('These are tests for create business form ', () =>{
         mountedCreateBusiness.instance().handleReset(event)
     })
 
-    it('handles form submit', () => {
-        mountedCreateBusiness.instance().formSubmit(event)
-    })
+    // it('handles form submit', () => {
+    //     mountedCreateBusiness.instance().formSubmit(event)
+    // })
 
     it('has a b', () => {
         const bs = mountedCreateBusiness.find('b');

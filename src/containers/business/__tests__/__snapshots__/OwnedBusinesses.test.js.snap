@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`These are tests for the businesses info page  renders without crashing 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-sm-9 content-wrapper"
+  >
+    <div
+      className="panel-heading"
+    >
+      <h3
+        className="panel-title"
+      >
+        <b>
+          Your Businesses
+        </b>
+      </h3>
+    </div>
+    <div
+      className="panel panel-default"
+    >
+      <div
+        className="panel-body"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="table table-striped table-bordered table-condensed table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  Last Modified
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Location
+                </th>
+                <th>
+                  Category
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Review nos
+                </th>
+                <th>
+                  Edit
+                </th>
+                <th>
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -4,7 +4,7 @@ import DashboardNavigation from '../../navigation/DashboardNavigation';
 import CustomFunctions from '../../custom/CustomFunctions';
 import { BASE_URL } from '../../custom/constants';
 import { Image, Button } from 'react-bootstrap'
-import superagent from 'superagent'
+import axios from 'axios'
 
 class Dashboard extends React.Component{
     constructor(){
@@ -16,25 +16,30 @@ class Dashboard extends React.Component{
     }
 
     handleReset = (event) => {
+        // handles reset of password change form
         this.setState({password:"", confirm_password:""});
     }
 
     handleChange = (event) => {
+        // handles change of state when input changes
         this.setState({[event.target.id]: event.target.value});
     }
 
     formSubmit = (event) => {
+         // handles form submit 
         event.preventDefault();
         if (this.state.password === this.state.confirm_password){
             if (this.state.password.length > 4){
-                superagent
-                    .post(BASE_URL+'api/v1/auth/reset-password')
-                    .send({ new_password:this.state.password })
-                    .set({'x-access-token':CustomFunctions.getToken()})
-                    .end((err,res)=>{
-                        if(err){ CustomFunctions.createNotifications(err.status,err.toString()) }; 
-                        CustomFunctions.createNotifications(res.status,res.body.message);
+                axios
+                    .post(BASE_URL+'api/v1/auth/reset-password',
+                    { new_password:this.state.password },
+                {headers:{'x-access-token':CustomFunctions.getToken()}})
+                    .then(res => {
+                        CustomFunctions.createNotifications(res.status,res.data.message);
                         this.props.history.replace('/dashboard');
+                    })
+                    .catch(err => {
+                        CustomFunctions.createNotifications(err.status,err.response.message) 
                     });
                 }else{
                     CustomFunctions.createNotifications(400,'Password too short!');

@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Search from "../Search";
+import renderer from 'react-test-renderer';
 
 describe('These are tests for the search form ', () =>{
     const event={
@@ -18,6 +19,8 @@ describe('These are tests for the search form ', () =>{
 
     it('renders without crashing', () => {
        shallow(<Search />)
+       const tree = renderer.create(<Search />).toJSON();
+       expect(tree).toMatchSnapshot();
     });
 
     it('handles change', () => {

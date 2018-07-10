@@ -5,7 +5,7 @@ const Logout = ()=>(
     <li>
         <Link to='/logout'>
             <b><i className="glyphicon glyphicon-log-out"></i> Logout</b>
-        </Link>  
+        </Link>
     </li>
 )
 export default Logout;

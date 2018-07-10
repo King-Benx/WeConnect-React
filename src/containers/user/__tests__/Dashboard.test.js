@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Dashboard from "../Dashboard";
+import renderer from 'react-test-renderer';
 
 describe('These are tests for the login form ', () =>{
 
@@ -13,6 +14,8 @@ describe('These are tests for the login form ', () =>{
 
     it('renders without crashing', () => {
         shallow(<Dashboard />);
+        const tree = renderer.create(<Dashboard />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
     
     it('has divs', () => {

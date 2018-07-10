@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`These are tests for the search form  renders without crashing 1`] = `
+<li>
+  <form
+    className="navbar-form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <select
+        className="form-control"
+        id="filter_type"
+        name="filter_type"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          Filter by
+        </option>
+        <option
+          value="location"
+        >
+          Location
+        </option>
+        <option
+          value="category"
+        >
+          Category
+        </option>
+      </select>
+      |
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        className="form-control"
+        id="filter_value"
+        onChange={[Function]}
+        placeholder="filter value"
+        type="text"
+        value=""
+      />
+      |
+    </div>
+    <div
+      className="form-group"
+    >
+      <input
+        className="form-control"
+        id="search"
+        onChange={[Function]}
+        placeholder="Search"
+        required="required"
+        type="text"
+        value=""
+      />
+      |
+    </div>
+    <button
+      className="btn btn-default btn btn-info"
+      disabled={false}
+      type="submit"
+    >
+      <i
+        className="glyphicon glyphicon-search"
+        type="submit"
+      />
+    </button>
+  </form>
+</li>
+`;

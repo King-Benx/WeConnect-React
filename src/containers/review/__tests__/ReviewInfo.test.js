@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ReviewInfo from "../ReviewInfo";
+import renderer from 'react-test-renderer';
 
 describe('These are tests for the login form ', () =>{
     const props = {
@@ -28,6 +29,8 @@ describe('These are tests for the login form ', () =>{
 
     it('renders without crashing', () => {
        shallow(<ReviewInfo {...props} />)
+       const tree = renderer.create(<ReviewInfo {...props} />).toJSON();
+       expect(tree).toMatchSnapshot();
     });
 
     it('has div', () => {

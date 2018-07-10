@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Table } from 'react-bootstrap';
-import superagent from 'superagent';
+import axios from 'axios';
 import CustomFunctions from '../../custom/CustomFunctions';
 import { BASE_URL } from '../../custom/constants';
 import DashboardNavigation from '../../navigation/DashboardNavigation';
@@ -22,76 +22,86 @@ class OwnedBusinesses extends React.Component{
         }
     }
     handleReset = (event) => {
+        // handles reset of edit business form
         this.setState({ name:"", location:"",category:"",description:"" });
     }
 
     handleChange = (event) => {
+        // handles change of state on input change in edit business form
         this.setState({ [event.target.id]: event.target.value });
     }
 
     handleClose() {
+        // handles closing of the modal form
         this.setState({ show: false });
       }
     
     handleShow= (event) => {
-        superagent
-        .get(BASE_URL+'api/v1/businesses/'+event.target.id)
-        .set({'x-access-token':CustomFunctions.getToken()})
-        .end((err,res)=>{
-            if(err){CustomFunctions.createNotifications(err.status, err.toString())};
+        // handles the showing of the modal form
+        axios
+        .get(BASE_URL+'api/v1/businesses/'+event.target.id,
+        {headers: {'x-access-token':CustomFunctions.getToken()}})
+        .then(res => {
             this.setState({
                 show:true ,
-                business:res.body.business_info,
-                business_id:res.body.business_info.id,
-                name:res.body.business_info.name,
-                location:res.body.business_info.location,
-                category:res.body.business_info.category,
-                description:res.body.business_info.description,
+                business:res.data.business_info,
+                business_id:res.data.business_info.id,
+                name:res.data.business_info.name,
+                location:res.data.business_info.location,
+                category:res.data.business_info.category,
+                description:res.data.business_info.description,
             })
+        })
+        .catch(err => {
+            CustomFunctions.createNotifications(err.status, err.toString());
         });
     }
     
     componentDidMount(){
-        superagent
-        .get(BASE_URL+'api/v1/owned_businesses')
-        .set({'x-access-token':CustomFunctions.getToken()})
-        .end((err,res)=>{
-            if(err){CustomFunctions.createNotifications(err.status, res.body.message)};
+        // populates the business information
+        axios
+        .get(BASE_URL+'api/v1/owned_businesses',
+        {headers:{'x-access-token':CustomFunctions.getToken()}})
+        .then( res => {
             if (res.status === 404){
                 this.setState({owned_businesses:[],show:false});
             }else if(res.status === 200){
-                this.setState({owned_businesses:res.body.results.businesses,show:false});
+                this.setState({owned_businesses:res.data.results.businesses,show:false});
             }
+        })
+        .catch(err =>{
+            CustomFunctions.createNotifications(err.status, err.response.data.message);        
         });
-    }
-    
+    } 
+
     showReviews = (event) => {
+        // handles redirection to the businesses' reviews
         this.props.history.push('/all_businesses/'+event.target.id+'/reviews');
     }
 
     deleteBusiness = (event) => {
-        superagent
-        .del(BASE_URL+'api/v1/businesses/'+event.target.id)
-        .set({'x-access-token':CustomFunctions.getToken()})
-        .end((err,res)=>{
-            if(err){CustomFunctions.createNotifications(err.status, err.toString())};
-            CustomFunctions.createNotifications(res.status, res.body.message);
-            this.componentDidMount();
+        // deletes a particular business
+        axios
+        .delete(BASE_URL+'api/v1/businesses/'+event.target.id,
+        {headers: {'x-access-token':CustomFunctions.getToken()}})
+        .then(res => {
+            CustomFunctions.createNotifications(res.status, res.data.message);
+            this.componentDidMount()
         });
     }
 
     handleSubmit = (event) => {
+        // handles the submit of edit business
         event.preventDefault();
-        superagent
-            .put(BASE_URL+'api/v1/businesses/'+this.state.business_id)
-            .send({name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category})
-            .set({'x-access-token':CustomFunctions.getToken()})
-            .end((err,res)=>{
-                if(err){CustomFunctions.createNotifications(err.status, err.toString());};
-                CustomFunctions.createNotifications(res.status, res.body.message)
-                this.componentDidMount();
+        axios
+            .put(BASE_URL+'api/v1/businesses/'+this.state.business_id,
+            {name:this.state.name,location:this.state.location, description:this.state.description, category:this.state.category},
+            {headers:{'x-access-token':CustomFunctions.getToken()} })
+            .then(res => {
+                CustomFunctions.createNotifications(res.status, res.data.message);
+                this.componentDidMount()
             });
-    }
+        }
 
     render(){
         const table_data= this.state.owned_businesses.map(((business)=>{
@@ -105,16 +115,16 @@ class OwnedBusinesses extends React.Component{
                     <td>{ business.description }</td>
                     <td>
                         <Button id={ business.id } onClick={ this.showReviews } bsStyle="info" block>
-                            <i className="glyphicon glyphicon-star"></i> Reviews
+                            <i className="glyphicon glyphicon-star" id={ business.id } onClick={ this.showReviews }></i> Reviews
                         </Button>
                     </td>
                     <td>
                         <Button id={ business.id } bsStyle="warning" onClick={ this.handleShow } block>
-                            <i className="glyphicon glyphicon-edit"></i> Edit
+                            <i className="glyphicon glyphicon-edit" id={ business.id } onClick={ this.handleShow }></i> Edit
                         </Button>
                     </td>
                     <td>
-                        <Button id={ business.id } onClick={ this.deleteBusiness } bsStyle="danger" block><i className="glyphicon glyphicon-trash"></i></Button>
+                        <Button id={ business.id } onClick={ this.deleteBusiness } bsStyle="danger" block><i className="glyphicon glyphicon-trash" id={ business.id } onClick={ this.deleteBusiness }></i></Button>
                     </td>
                 </tr>
             );
@@ -161,15 +171,15 @@ class OwnedBusinesses extends React.Component{
                                                 <input type="text" className="form-control" name="location" id="location" value={ this.state.location } onChange={ this.handleChange } placeholder="Business Location" aria-describedby="location-addon" required="required"/>
                                             </div>
                                             <div className="form-group">
-                                                <input type="text" className="form-control" name="category" id="category" value={ this.state.category } onChange={ this.handleChange } placeholder="Business Name" aria-describedby="category-addon" required="required"/>  
+                                                <input type="text" className="form-control" name="category" id="category" value={ this.state.category } onChange={ this.handleChange } placeholder="Business Category" aria-describedby="category-addon" required="required"/>  
                                             </div>
                                             <div className="form-group">
                                                     <textarea className="form-control" name="description" id="description" value={ this.state.description } onChange={ this.handleChange } placeholder="Describe your Business" aria-describedby="description-addon"
                                                         required="required"></textarea>
                                             </div>
                                             <div className="form-group">
-                                                <Button type="reset" onClick={ this.handleReset } className="pull-left"><i className="glyphicon glyphicon-refresh"></i> Reset</Button>
-                                                <Button type="submit" className="pull-right" bsStyle="warning"><i className="glyphicon glyphicon-edit"></i> Edit Business</Button>
+                                                <Button type="reset" onClick={ this.handleReset } className="pull-left"><i className="glyphicon glyphicon-refresh" onClick={ this.handleReset }></i> Reset</Button>
+                                                <Button type="submit" className="pull-right" bsStyle="warning"><i className="glyphicon glyphicon-edit" type="submit"></i> Edit Business</Button>
                                                 <div className="clearfix"></div>
                                             </div>
                                         </form>

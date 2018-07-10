@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import CustomFunctions from '../custom/CustomFunctions';
 
-const DashboardNavigation = ()=>{
+const DashboardNavigation = (props)=>{
     return (
         CustomFunctions.checkAuthentication() ? ( 
         <div className="col-sm-3 wrapper">
@@ -25,7 +25,7 @@ const DashboardNavigation = ()=>{
                 </Link>
             </div>
         </div>
-        ): <Redirect to={{pathname:'/login'}}/>
+        ):<Redirect to={{pathname:'/login'}}/>
     );
 }
 export default DashboardNavigation;

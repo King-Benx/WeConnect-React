@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ResetPassword from "../ResetPassword";
+import renderer from 'react-test-renderer';
 
 describe('These are tests for the login form ', () =>{
     const props = {
@@ -40,6 +41,8 @@ describe('These are tests for the login form ', () =>{
 
     it('renders without crashing', () => {
         shallow(<ResetPassword  />)
+        const tree = renderer.create(<ResetPassword />).toJSON();
+       expect(tree).toMatchSnapshot();
     });
 
 

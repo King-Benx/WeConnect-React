@@ -25,18 +25,23 @@ class CustomFunctions {
     }
 
     static checkAuthentication(){
+        // check whether token exists
         const stored_token = localStorage.getItem('token')
-        if (stored_token == null){
-            return false
-        }
-        return stored_token && stored_token.length > 10;
+        if (stored_token){
+            return stored_token && stored_token.length > 10;
+        }else{
+            return false;
+        }  
     }
 
     static getToken(){
+        // return token
         return localStorage.getItem('token')
     }
 
     static deleteToken(){
+        // delete token from local storage
+        localStorage.clear()
         localStorage.removeItem('token')
         return true
     }

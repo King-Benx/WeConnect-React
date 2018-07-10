@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import BusinessInfo from "../BusinessInfo";
+import renderer from 'react-test-renderer';
 
 describe('These are tests for the businesses info page ', () =>{
     const props = {
@@ -10,6 +11,8 @@ describe('These are tests for the businesses info page ', () =>{
 
     it('renders without crashing', () => {
        shallow(<BusinessInfo {...props} />)
+       const tree = renderer.create(<BusinessInfo {...props} />).toJSON();
+       expect(tree).toMatchSnapshot();
     });
 
     it('has divs', () => {

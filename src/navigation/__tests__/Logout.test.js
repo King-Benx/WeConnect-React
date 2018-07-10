@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Logout from "../Logout";
+import renderer from 'react-test-renderer';
 
 describe('These are tests the logout link', () => {
     const event={
@@ -19,7 +20,9 @@ describe('These are tests the logout link', () => {
     });
 
     it('renders without crashing', () => {
-       mountedLogoutLink =  shallow(<Logout />)
+        mountedLogoutLink =  shallow(<Logout />);
+        const tree = renderer.create(<Logout />).toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
     it('has links', () =>{
