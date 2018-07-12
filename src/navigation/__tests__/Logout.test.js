@@ -1,18 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Logout from "../Logout";
-import renderer from 'react-test-renderer';
 
 describe('These are tests the logout link', () => {
-    const event={
-        target:{
-            value:{}
-        },
-        preventDefault: () => {
-
-        }
-    }
-
     let mountedLogoutLink;
 
     beforeEach(()=>{
@@ -20,9 +10,7 @@ describe('These are tests the logout link', () => {
     });
 
     it('renders without crashing', () => {
-        mountedLogoutLink =  shallow(<Logout />);
-        const tree = renderer.create(<Logout />).toJSON();
-        expect(tree).toMatchSnapshot();
+        mountedLogoutLink = shallow(<Logout />)
     });
 
     it('has links', () =>{

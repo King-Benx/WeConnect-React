@@ -1,17 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Login from "../Login";
-import renderer from 'react-test-renderer';
 
 describe('These are tests the login link', () => {
-    const event={
-        target:{
-            value:{}
-        },
-        preventDefault: () => {
-
-        }
-    }
     let mountedLoginLink;
 
     beforeEach(()=>{
@@ -19,9 +10,7 @@ describe('These are tests the login link', () => {
     });
 
     it('renders without crashing', () => {
-        mountedLoginLink =  shallow(<Login />)
-        const tree = renderer.create(<Login />).toJSON();
-        expect(tree).toMatchSnapshot();
+        mountedLoginLink = shallow(<Login/>)
     });
 
     it('has links', () =>{

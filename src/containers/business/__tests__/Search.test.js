@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Search from "../Search";
-import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('These are tests for the search form ', () =>{
     const event={
@@ -14,18 +14,25 @@ describe('These are tests for the search form ', () =>{
     }
     let mountedSearch;
     beforeEach(() => {
-        mountedSearch= shallow(<Search />)
+        mountedSearch = shallow(<Search />)
     });
 
     it('renders without crashing', () => {
-       shallow(<Search />)
-       const tree = renderer.create(<Search />).toJSON();
-       expect(tree).toMatchSnapshot();
+      mountedSearch
     });
 
     it('handles change', () => {
         mountedSearch.instance().handleChange(event);
     })
+
+    // it('handles search', () => {
+    // let spy = jest.spyOn(mountedSearch, 'formSubmit')
+    //     mountedSearch.find('input[name="filter_type"]').simulate('change', {target: {value:'location'}})
+    //     mountedSearch.find('input[name="filter_value"]').simulate('change', {target: {value:'location'}})
+    //     mountedSearch.find('input[name="search"]').simulate('change', {target: {value:'search'}})
+    //     mountedSearch.find('form').simulate('submit', {preventDefault: jest.fn()})
+    //     expect(spy).toHaveBeenCalled();
+    // })
 
     it('has an li', () => {
         const lis= mountedSearch.find('li');

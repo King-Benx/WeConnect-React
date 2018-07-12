@@ -37,10 +37,10 @@ class Search extends React.Component{
                     </select>|
                 </div>
                 <div className="form-group">
-                    <input type="text" id="filter_value" value={ this.state.filter_value } onChange={ this.handleChange } className="form-control" placeholder="filter value"/>|
+                    <input type="text" id="filter_value" name="filter_value" value={ this.state.filter_value } onChange={ this.handleChange } className="form-control" placeholder="filter value"/>|
                 </div>
                 <div className="form-group">
-                    <input type="text" id="search" value={ this.state.search } onChange={ this.handleChange } className="form-control" placeholder="Search" required="required"/>|
+                    <input type="text" name="search" id="search" value={ this.state.search } onChange={ this.handleChange } className="form-control" placeholder="Search" required="required"/>|
                 </div>
                 <Button bsStyle="info" type="submit" className="btn btn-default"><i className="glyphicon glyphicon-search" type="submit"></i></Button>
             </form>

@@ -1,10 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LandingPage from "../LandingPage";
-import renderer from 'react-test-renderer';
+import mockAxios from 'axios';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('These are tests for the registration form for a user', () =>{
-    
+    let wrapper,component;
+    wrapper = shallow(<MemoryRouter><LandingPage/></MemoryRouter>);
+    component = wrapper.find(LandingPage).dive();
+
     const event={
         target:{
             value:{}
@@ -18,8 +22,13 @@ describe('These are tests for the registration form for a user', () =>{
 
     beforeEach(() => {
         mountedLandingPage= shallow(<LandingPage/>);
+        mockAxios.post.mockImplementationOnce(() => Promise.resolve({
+            data:{
+                    "message": "Successfully created user user you can login"
+                }
+       }))
     });
-
+   
 
     it('handles input changed', () => {
         mountedLandingPage.instance().handleChange(event)
@@ -29,14 +38,18 @@ describe('These are tests for the registration form for a user', () =>{
         mountedLandingPage.instance().handleReset(event)
     })
 
-    // it('handles form submit', () => {
-    //     mountedLandingPage.instance().formSubmit(event)
-    // })
+    it('handles form submit', () => {
+        let spy = jest.spyOn(component.instance(), 'formSubmit')
+        component.find('input[name="username"]').simulate('change', {target: {value:'johndoe'}})
+        component.find('input[name="email"]').simulate('change', {target: {value:'johndoe@mail.com'}})
+        component.find('input[name="password"]').simulate('change', {target: {value:'password'}})
+        component.find('input[name="confirm_password"]').simulate('change', {target: {value:'password'}})
+        component.find('form').simulate('submit', {preventDefault: jest.fn()})
+        expect(spy).toHaveBeenCalled();
+    })
 
     it('renders without crashing', () => {
-        shallow(<LandingPage />)
-        const tree = renderer.create(<LandingPage />).toJSON();
-        expect(tree).toMatchSnapshot();
+        mountedLandingPage
     });
 
     it('has a paragraph', () => {

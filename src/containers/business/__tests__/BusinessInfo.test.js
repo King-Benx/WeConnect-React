@@ -8,46 +8,44 @@ describe('These are tests for the businesses info page ', () =>{
         business:{
         }
     }
-
+    let mountedBusinessInfo;
     it('renders without crashing', () => {
-       shallow(<BusinessInfo {...props} />)
-       const tree = renderer.create(<BusinessInfo {...props} />).toJSON();
-       expect(tree).toMatchSnapshot();
+       mountedBusinessInfo = shallow(<BusinessInfo {...props} />)
     });
 
     it('has divs', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('div').length).toBe(1)
+        const divs = mountedBusinessInfo.find('div');
+        expect(divs.length).toBe(1)
     });
 
     it('has h4s', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('h4').length).toBe(4)
+        const h4s = mountedBusinessInfo.find('h4');
+        expect(h4s.length).toBe(4)
     });
 
     it('has b', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('b').length).toBe(4)
+        const bs = mountedBusinessInfo.find('b');
+        expect(bs.length).toBe(4)
     });
 
     it('has an underline', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('u').length).toBe(1)
+        const us = mountedBusinessInfo.find('u');
+        expect(us.length).toBe(1)
     });
 
     it('has an spans', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('span').length).toBe(3)
+        const spans = mountedBusinessInfo.find('span');
+        expect(spans.length).toBe(3)
     });
 
     it('has a paragraph', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('p').length).toBe(1)
+        const ps = mountedBusinessInfo.find('p')
+        expect(ps.length).toBe(1)
     });
 
     it('has an image', () => {
-        const wrapper = shallow(<BusinessInfo {...props}/>)
-        expect(wrapper.find('Image').length).toBe(1)
+        const images = mountedBusinessInfo.find('Image');
+        expect(images.length).toBe(1)
     });
 
 });

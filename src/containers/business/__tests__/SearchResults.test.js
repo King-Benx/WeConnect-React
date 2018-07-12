@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SearchResults from "../SearchResults";
-import renderer from 'react-test-renderer';
 
 describe('These are tests for the search form ', () =>{
     const props = {
@@ -26,8 +25,6 @@ describe('These are tests for the search form ', () =>{
 
     it('renders without crashing', () => {
        shallow(<SearchResults {...props} />)
-       const tree = renderer.create(<SearchResults {...props} />).toJSON();
-       expect(tree).toMatchSnapshot();
     });
 
     // it('handles show reviews', () => {

@@ -1,0 +1,114 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import Businesses from "../Businesses";
+import renderer from 'react-test-renderer';
+import axios from 'axios'
+
+describe('These are tests for the businesses page ', () =>{
+
+    let mountedBusinesses;
+    beforeEach(() => {
+        mountedBusinesses = shallow(<Businesses />)
+        axios.get.mockImplementationOnce(
+            jest.fn(() => Promise.resolve ({
+                data: {
+                "results" : {
+                    "businesses" : [
+                      {
+                        "category": "Information Technology",
+                        "created_by": "admin",
+                        "date_created": "Tue, 10 Jul 2018 12:27:46 GMT",
+                        "description": "business 1 description",
+                        "id": 1,
+                        "last_modified": "Tue, 10 Jul 2018 12:27:46 GMT",
+                        "location": "Kampala",
+                        "name": "business 1",
+                        "user_id": 1
+                      }
+                    ]
+                }
+                }
+            }))
+        )        
+    });
+
+    it('sets authentcation state to true', ()=> {
+        component.setState({
+            "results" : {
+                "businesses" : [
+                  {
+                    "category": "Information Technology",
+                    "created_by": "admin",
+                    "date_created": "Tue, 10 Jul 2018 12:27:46 GMT",
+                    "description": "business 1 description",
+                    "id": 1,
+                    "last_modified": "Tue, 10 Jul 2018 12:27:46 GMT",
+                    "location": "Kampala",
+                    "name": "business 1",
+                    "user_id": 1
+                  }
+                ]
+            }
+        })
+    })
+
+    it('renders without crashing', () => {
+       mountedBusinesses
+    })
+
+    it('component did mount', () => {
+       mountedBusinesses.instance().componentDidMount()
+    })
+
+    it('calls axios.get in #componentDidMount', () => {
+        return mountedBusinesses.instance().componentDidMount().then(()=>{
+            axios.get.mockImplementationOnce(
+                jest.fn(() => Promise.resolve ({
+                    data: {
+                    "results" : {
+                        "businesses" : [
+                          {
+                            "category": "Information Technology",
+                            "created_by": "admin",
+                            "date_created": "Tue, 10 Jul 2018 12:27:46 GMT",
+                            "description": "business 1 description",
+                            "id": 1,
+                            "last_modified": "Tue, 10 Jul 2018 12:27:46 GMT",
+                            "location": "Kampala",
+                            "name": "business 1",
+                            "user_id": 1
+                          }
+                        ]
+                    }
+                    }
+                })))
+            expect(axios.get).toHaveBeenCalled()
+        })
+    })
+
+    it('has a dashboard', () => {
+        const dashboards = mountedBusinesses.find('DashboardNavigation');
+        expect(dashboards.length).toBe(1)
+     })
+
+     it('has a table', () => {
+        const tables = mountedBusinesses.find('Table');
+        expect(tables.length).toBe(1)
+     })
+
+     it('has divs', () => {
+        const divs = mountedBusinesses.find('div');
+        expect(divs.length).toBe(11)
+     })
+
+     it('has h3', () => {
+        const h3s = mountedBusinesses.find('h3');
+        expect(h3s.length).toBe(1)
+     })
+
+     it('has b', () => {
+        const bs = mountedBusinesses.find('b');
+        expect(bs.length).toBe(1)
+     })
+
+})

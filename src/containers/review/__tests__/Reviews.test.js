@@ -2,58 +2,65 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Reviews from "../Reviews";
 import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
+import mockAxios from 'axios';
 
 describe('These are tests for the review form ', () =>{
-    let props;
-    let mountedReviews;
-    beforeEach(() => {
-        props={
-            match: {
-                params: {
-                    id:1
-                }
-            },
-            business:{
-                id:1,
-                location:'location 1',
-                description:'business description 1',
-                category:'category 1',
-                name:'business 1',
-                user_id:1
-            },
-            review:{
-                id:1,
-                author:'test author',
-                review:'test review',
-                last_modified: '2018-01-01',
-                business_id:'1',
-            },
-            id:'1'
-        };
-        mountedReviews = shallow(<Reviews { ...props } />)
-    });
-    const event={
-        target:{
-            value:{}
-        },
-        preventDefault: () => {
-
+    const props = {
+        match: {
+            params: {
+                id:1
+            }
         }
     }
+    const event={
+       target:{
+           value:{}
+       },
+       preventDefault: () => {
+    
+       }
+    }
+    let wrapper,component;
+    wrapper = shallow(<MemoryRouter><Reviews {...props}/></MemoryRouter>);
+    component = wrapper.find(Reviews).dive();
 
+    let mountedReviews;
+    beforeEach(() => {
+        mountedReviews = shallow(<Reviews {...props}/>)
+    })
+    
     it('renders without crashing', () => {
        shallow(<Reviews {...props} />)
-       const tree = renderer.create(<Reviews {...props} />).toJSON();
-       expect(tree).toMatchSnapshot();
+       mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+        data:{
+            "reviews": {
+              "business_reviews": [
+                {
+                  "author": "admin",
+                  "created_by": "admin",
+                  "date_created": "Tue, 10 Jul 2018 12:33:45 GMT",
+                  "last_modified": "Tue, 10 Jul 2018 12:33:45 GMT",
+                  "review": "Review 1"
+                }
+              ]
+            }
+          }
+
+        }))
     });
 
     it('handles input changed', () => {
         mountedReviews.instance().handleChange(event)
     })
 
-    // it('handles form submit', () => {
-    //     mountedReviews.instance().formSubmit(event)
-    // })
+    it('handles form submit', () => {
+        mountedReviews.instance().formSubmit(event)
+        let spy = jest.spyOn(component.instance(), 'formSubmit')
+        component.find('textarea[name="review"]').simulate('change', {target: {value:'review 1'}})
+        component.find('form').simulate('submit', {preventDefault: jest.fn()})
+        expect(spy).toHaveBeenCalled();
+    })
 
     it('component did mount', () => {
         mountedReviews.instance().componentDidMount()

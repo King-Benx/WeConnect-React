@@ -1,9 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ResetPassword from "../ResetPassword";
-import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router-dom';
+import mockAxios from 'axios';
 
 describe('These are tests for the login form ', () =>{
+    let wrapper,component;
+    wrapper = shallow(<MemoryRouter><ResetPassword /></MemoryRouter>);
+    component = wrapper.find(ResetPassword).dive();
     const props = {
         match: {
             params: {
@@ -19,11 +23,16 @@ describe('These are tests for the login form ', () =>{
 
         }
     }
-
     let mountedResetPassword;
+
 
     beforeEach(()=>{
         mountedResetPassword = shallow(<ResetPassword/>);
+        mockAxios.post.mockImplementationOnce(() => Promise.resolve({
+            data:{
+                "message": "Password has been set to new_pass"
+              }
+        }))
     });
 
     it('handles input changed', () => {
@@ -35,14 +44,17 @@ describe('These are tests for the login form ', () =>{
     })
 
     it('handles submit form', () => {
-        mountedResetPassword.instance().formSubmit(event)
+        let spy = jest.spyOn(component.instance(), 'formSubmit')
+        component.find('input[name="password"]').simulate('change', {target: {value:'change_password'}})
+        component.find('input[name="confirm_password"]').simulate('change', {target: {value:'change_password'}})
+        component.find('form').simulate('submit', {preventDefault: jest.fn()})
+        expect(spy).toHaveBeenCalled();
+
     })
 
 
     it('renders without crashing', () => {
         shallow(<ResetPassword  />)
-        const tree = renderer.create(<ResetPassword />).toJSON();
-       expect(tree).toMatchSnapshot();
     });
 
 
