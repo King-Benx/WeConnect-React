@@ -1,4 +1,6 @@
-import { NotificationManager } from 'react-notifications';
+import {
+    NotificationManager
+} from 'react-notifications';
 class CustomFunctions {
     static createNotifications(code, message) {
         switch (code) {
@@ -17,29 +19,29 @@ class CustomFunctions {
                 return NotificationManager.error(message);
         }
     }
-    
-    static storeToken(token){
+
+    static storeToken(token) {
         // Store a token and clear it after it expires
         localStorage.clear();
-        localStorage.setItem('token',token)
+        localStorage.setItem('token', token)
     }
 
-    static checkAuthentication(){
+    static checkAuthentication() {
         // check whether token exists
         const stored_token = localStorage.getItem('token')
-        if (stored_token){
+        if (stored_token) {
             return stored_token && stored_token.length > 10;
-        }else{
+        } else {
             return false;
-        }  
+        }
     }
 
-    static getToken(){
+    static getToken() {
         // return token
         return localStorage.getItem('token')
     }
 
-    static deleteToken(){
+    static deleteToken() {
         // delete token from local storage
         localStorage.clear()
         localStorage.removeItem('token')

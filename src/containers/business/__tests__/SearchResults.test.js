@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SearchResults from "../SearchResults";
+import mockAxios from 'axios';
 
 describe('These are tests for the search form ', () =>{
     const props = {
@@ -20,16 +21,37 @@ describe('These are tests for the search form ', () =>{
 
     let mountedSearchResults;
     beforeEach(() => {
-        mountedSearchResults = shallow(<SearchResults {...props} />)
+        mountedSearchResults = shallow(<SearchResults {...props} history={{push: ()=>{}}} />)
+        mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+            data:{
+                "results": {
+                  "searched_businesses": [
+                    {
+                      "category": "Information Technology",
+                      "created_by": "admin",
+                      "date_created": "Tue, 10 Jul 2018 12:27:46 GMT",
+                      "description": "business 1 description",
+                      "id": 1,
+                      "last_modified": "Tue, 10 Jul 2018 12:27:46 GMT",
+                      "location": "Kampala",
+                      "name": "business 1",
+                      "user_id": 1
+                    }
+                  ]
+                }
+            }    
+    
+            }))
     });
 
     it('renders without crashing', () => {
        shallow(<SearchResults {...props} />)
+       
     });
 
-    // it('handles show reviews', () => {
-    //     mountedSearchResults.instance().showReviews(event);
-    // })
+    it('handles show reviews', () => {
+        mountedSearchResults.instance().showReviews(event);
+    })
 
     it('has a dashboard', () =>{
         const dashboards = mountedSearchResults.find('DashboardNavigation');

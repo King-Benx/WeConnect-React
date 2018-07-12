@@ -64,8 +64,6 @@ const event={
                 "message": "Successfully deleted business business 1"
               }
             }))
-        let spy = jest.spyOn(component.instance(), 'deleteBusiness')
-        // expect(spy).toHaveBeenCalled();
     })
 
     it('handles show', () => {
