@@ -14,7 +14,7 @@ businesses they have interacted with.
 
 ## BUILT WITH
 
-* React
+* ReactJs
 
 ## SETTING UP APPLICATION
 
@@ -44,8 +44,9 @@ businesses they have interacted with.
     **```npm test```**
 
 ## MODIFYING API RESOURCE
-    In the event that you decide to clone the API locally onto your computer or change the location of the API in 
-    ```src/custom/constants.js```
+   You can set the API resource location in this file 
+    
+   **```src/custom/constants.js```**
 
 ## Author
 
