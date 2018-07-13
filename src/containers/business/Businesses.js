@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Table, Pagination } from "react-bootstrap";
+import { Button, Pagination } from "react-bootstrap";
 import axios from "axios";
 import { BASE_URL } from "../../custom/constants";
 import CustomFunctions from "../../custom/CustomFunctions";
 import DashboardNavigation from "../../navigation/DashboardNavigation";
+import BusinessTable from "./BusinessTable";
 
 class Businesses extends React.Component {
   constructor() {
@@ -117,28 +118,7 @@ class Businesses extends React.Component {
               <b> All Registered Businesses </b>
             </h3>
           </div>
-          <div className="panel panel-default">
-            <div className="panel-body">
-              <div className="clearfix"> </div>
-              <div className="table-responsive">
-                <Table striped bordered condensed hover>
-                  <thead>
-                    <tr>
-                      <th> Date of Creation </th> <th> Name </th>
-                      <th> Location </th> <th> Category </th>
-                      <th> Description </th> <th> View </th>
-                    </tr>
-                  </thead>
-                  <tbody> {table_data} </tbody>
-                </Table>
-              </div>
-              <div className="row text-center">
-                <Pagination>
-                  <Pagination.Prev /> {pagination_data} <Pagination.Next />
-                </Pagination>
-              </div>
-            </div>
-          </div>
+          <BusinessTable business_data={table_data} pagination_data={pagination_data}/>
         </div>
       </div>
     );

@@ -59,24 +59,15 @@ describe("These are tests for the businesses page ", () => {
     expect(dashboards.length).toBe(1);
   });
 
-  it("has a table", () => {
-    const tables = mountedBusinesses.find("Table");
-    expect(tables.length).toBe(1);
+  it("has a businessTable", () => {
+    const business_tables = mountedBusinesses.find("BusinessTable");
+    expect(business_tables.length).toBe(1);
   });
 
-  it("has a table head", () => {
-    const table_head = mountedBusinesses.find("thead");
-    expect(table_head.length).toBe(1);
-  });
-
-  it("has a table body", () => {
-    const table_body = mountedBusinesses.find("tbody");
-    expect(table_body.length).toBe(1);
-  });
 
   it("has divs", () => {
     const divs = mountedBusinesses.find("div");
-    expect(divs.length).toBe(8);
+    expect(divs.length).toBe(3);
   });
 
   it("has h3", () => {
@@ -89,8 +80,4 @@ describe("These are tests for the businesses page ", () => {
     expect(bs.length).toBe(1);
   });
 
-  it("has pagination", () => {
-    const pagination = mountedBusinesses.find("Pagination");
-    expect(pagination.length).toBe(1);
-  });
 });

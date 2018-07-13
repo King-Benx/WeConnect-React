@@ -26,7 +26,8 @@
   "collectCoverageFrom": [
     "src/**/*.{js,jsx,mjs}",
     "!src/index.js",
-    "!src/containers/user/Logout.js"
+    "!src/containers/user/Logout.js",
+    "!src/containers/business/SearchResults.js"
   ]
 },
   "devDependencies": {

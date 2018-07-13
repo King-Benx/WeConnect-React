@@ -70,27 +70,6 @@ describe("These are tests for the businesses info page ", () => {
     );
   });
 
-  it("handles show", () => {
-    mountedOwnedBusiness.instance().handleShow(event);
-    mockAxios.get.mockImplementationOnce(() =>
-      Promise.resolve({
-        data: {
-          business_info: {
-            category: "Information Technology",
-            created_by: "admin",
-            date_created: "Tue, 10 Jul 2018 12:27:46 GMT",
-            description: "business 1 description",
-            id: 1,
-            last_modified: "Tue, 10 Jul 2018 12:27:46 GMT",
-            location: "Kampala",
-            name: "business 1",
-            user_id: 1
-          }
-        }
-      })
-    );
-  });
-
   it("handles submit", () => {
     mountedOwnedBusiness.instance().handleSubmit(event);
     let spy = jest.spyOn(component.instance(), "handleSubmit");
