@@ -39,18 +39,14 @@ class SearchResults extends React.Component {
         }
       )
       .then(res => {
-        if (res.status === 404) {
-          this.setState({
-            all_businesses: []
-          });
-        } else if (res.status === 200) {
           this.setState({
             all_businesses: res.data.results.searched_businesses
           });
-        }
       })
       .catch(err => {
-        CustomFunctions.createNotifications(err.status, err.response.message);
+        this.setState({
+          all_businesses: []
+        });
       });
   }
 
@@ -88,7 +84,6 @@ class SearchResults extends React.Component {
         all_businesses: res.data.results.searched_businesses
       };
     } catch (err) {
-      CustomFunctions.createNotifications(err.status, err.response.message);
       return null;
     }
   }
@@ -148,7 +143,6 @@ class SearchResults extends React.Component {
                       <th> Description </th> <th> View </th>
                     </tr>
                   </thead>
-
                   <tbody> {table_data} </tbody>
                 </Table>
               </div>

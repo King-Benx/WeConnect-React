@@ -38,19 +38,16 @@ class Reviews extends React.Component{
         .catch(err => {
             CustomFunctions.createNotifications(err.status, err.response.data.message);      
         });
-
+       
+        // get existent reviews
         axios
         .get(BASE_URL+'api/v1/businesses/'+ this.state.id +'/reviews',
          {headers:{ 'x-access-token':CustomFunctions.getToken()}})
          .then(res => {
-            if (res.status === 404){
-                this.setState({ reviews:[] });
-            }else if(res.status === 200){
                 this.setState({ reviews:res.data.reviews.business_reviews });
-            }
          })
         .catch(err => {
-            CustomFunctions.createNotifications(err.status, err.response.data.message);     
+            this.setState({ reviews:[] });  
         });
     };
 
@@ -78,6 +75,7 @@ class Reviews extends React.Component{
             );
         }));   
         return (
+            // JSX returned
                 <div className="row"> 
                     <DashboardNavigation/>
                     <div className="col-sm-9 content-wrapper">

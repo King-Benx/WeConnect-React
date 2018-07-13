@@ -35,13 +35,17 @@ businesses they have interacted with.
 
 1. Run the application
 
-    **```npm run start```**
+    **```npm start```**
 
 ## RUNNING TESTS
 
 1. To run all the tests
 
     **```npm test```**
+
+## MODIFYING API RESOURCE
+    In the event that you decide to clone the API locally onto your computer or change the location of the API in 
+    ```src/custom/constants.js```
 
 ## Author
 

@@ -3,6 +3,7 @@ import {
 } from 'react-notifications';
 class CustomFunctions {
     static createNotifications(code, message) {
+        // Generate notifications based off status codes
         switch (code) {
             case 200:
                 return NotificationManager.success(message, 'Success');

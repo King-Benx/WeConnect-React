@@ -10,10 +10,8 @@ class Businesses extends React.Component {
     super();
     this.state = {
       all_businesses: [],
-      page_limit: "",
-      limit: "",
-      number_of_records: "",
-      page_numbers: ""
+      page: "",
+      paginate:"",
     };
   }
 
@@ -29,8 +27,7 @@ class Businesses extends React.Component {
         BASE_URL +
           "api/v1/businesses?page=" +
           this.state.page +
-          "&limit=" +
-          this.state.page_limit,
+          "&limit=5",
         {
           headers: {
             "x-access-token": CustomFunctions.getToken()
@@ -38,54 +35,31 @@ class Businesses extends React.Component {
         }
       )
       .then(res => {
-        if (res.status === 404) {
-          this.setState({
-            all_businesses: []
-          });
-        } else if (res.status === 200) {
-          this.setState({
-            all_businesses: res.data.results.businesses
-          });
-        }
+        this.setState({
+          all_businesses: res.data.results.businesses,
+          paginate: res.data.results.records,
+        })
       })
       .catch(err => {
-        CustomFunctions.createNotifications(err.status, err.response.message);
-      });
-
-    axios
-      .get(BASE_URL + "api/v1/businesses", {
-        headers: {
-          "x-access-token": CustomFunctions.getToken()
-        }
-      })
-      .then(res => {
         this.setState({
-          number_of_records: res.data.results.businesses.length
+          all_businesses: []
         });
-      });
+      })
   }
-
-  handlePageLimit = event => {
-    this.setState({
-      page_limit: event.target.value,
-      limit: event.target.value,
-      page_numbers: Math.ceil(
-        this.state.number_of_records / Number(event.target.value)
-      )
-    });
-    this.componentDidMount();
-  };
-
+  
   handlePageChange = event => {
-    this.setState({
-      page: event.target.value
-    });
-    this.componentDidMount();
+    // change page depending on pagination item clicked
+    const page_id = event.target.id;
+      this.setState({
+          page: page_id
+        });
+      this.componentDidMount();
   };
 
   render() {
     const table_data = this.state.all_businesses.map(business => {
       return (
+        // define business structure
         <tr key={business.id.toString()}>
           <td> {business.date_created} </td> <td> {business.name} </td>
           <td> {business.location} </td> <td> {business.category} </td>
@@ -110,21 +84,23 @@ class Businesses extends React.Component {
       );
     });
 
+    // Generate pagination data
     const iterator = [];
-    if (this.state.limit !== 0) {
-      for (let i = 1; i <= this.state.page_numbers; i++) {
+    if (this.state.paginate !== 0) {
+      for (let i = 1; i <= this.state.paginate; i++) {
         iterator.push(i);
       }
     } else {
       iterator.push(1);
     }
 
+    // define pagination structure
     const pagination_data = iterator.map(number => {
+     
       return (
         <Pagination.Item
-          key={number}
-          onClick={this.handlePageChange}
-          value={number}
+          id= {number}
+          onClickCapture={this.handlePageChange}
         >
           {number}
         </Pagination.Item>
@@ -132,6 +108,7 @@ class Businesses extends React.Component {
     });
 
     return (
+      // JSX returned
       <div className="row">
         <DashboardNavigation />
         <div className="col-sm-9 content-wrapper">
@@ -142,22 +119,6 @@ class Businesses extends React.Component {
           </div>
           <div className="panel panel-default">
             <div className="panel-body">
-              <div className="row text-right">
-                <div className="col-xs-6"> </div>
-                <div className="col-xs-6 ">
-                  <select
-                    className="form-control"
-                    id="limit"
-                    onChange={this.handlePageLimit}
-                  >
-                    <option> Limit records per page </option>
-                    <option value="1"> 1 </option>
-                    <option value="2"> 2 </option>
-                    <option value="3"> 3 </option>
-                  </select>
-                </div>
-              </div>
-              <br />
               <div className="clearfix"> </div>
               <div className="table-responsive">
                 <Table striped bordered condensed hover>

@@ -10,6 +10,7 @@ class ReviewInfo extends React.Component {
 
     render() { 
         return (
+            // JSX returned
             <div key={this.props.review.id} className="row">
                 <div className="col-xs-2">
                     <Image src={ comment_icon } alt="" responsive circle/>

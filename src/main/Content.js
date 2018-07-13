@@ -15,6 +15,7 @@ import ResetPassword from "../containers/user/ResetPassword";
 
 const Content = () => {
   return (
+    // JSX returned and  define routes with components
     <div className="container-fluid">
       <Switch>
         <Route exact path="/" component={LandingPage} />

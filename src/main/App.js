@@ -8,6 +8,7 @@ import Content from "./Content";
 class App extends Component {
   render() {
     return (
+      // JSX returned
       <div>
         <NavBar />
         <Content />

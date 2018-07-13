@@ -10,6 +10,7 @@ class BusinessInfo extends React.Component {
 
   render() {
     return (
+      // JSX returned
       <div className="col-xs-12">
         <Image src={brief_case} alt="" thumbnail responsive />
         <h4>

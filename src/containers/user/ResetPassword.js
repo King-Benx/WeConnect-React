@@ -56,6 +56,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
+      // JSX returned
       <div className="row">
         <DashboardNavigation />
         <div className="col-sm-9 content-wrapper">
