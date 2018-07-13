@@ -50,7 +50,7 @@ businesses they have interacted with.
     **```npm test```**
 
 ## MODIFYING API RESOURCE
-1. To modify the data source for the application to use a local api
+1. To modify the data source for the application to use a local api, open the constants.js file
     
    **```src/custom/constants.js```**
 
