@@ -4,7 +4,7 @@ import axios from "axios";
 import { BASE_URL } from "../../custom/constants";
 import CustomFunctions from "../../custom/CustomFunctions";
 import DashboardNavigation from "../../navigation/DashboardNavigation";
-import BusinessTable from './BusinessTable';
+import BusinessTable from "./BusinessTable";
 class SearchResults extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ class SearchResults extends React.Component {
       filter_type: props.match.params.filter_type,
       filter_value: props.match.params.filter_value,
       page: "",
-      paginate:"",
+      paginate: ""
     };
   }
 
@@ -33,7 +33,10 @@ class SearchResults extends React.Component {
           "&filter_type=" +
           this.state.filter_type +
           "&filter_value=" +
-          this.state.filter_value +"&page="+ this.state.page+"&limit=5",
+          this.state.filter_value +
+          "&page=" +
+          this.state.page +
+          "&limit=5",
         {
           headers: {
             "x-access-token": CustomFunctions.getToken()
@@ -41,10 +44,10 @@ class SearchResults extends React.Component {
         }
       )
       .then(res => {
-          this.setState({
-            all_businesses: res.data.results.searched_businesses,
-            paginate: res.data.results.records,
-          });
+        this.setState({
+          all_businesses: res.data.results.searched_businesses,
+          paginate: res.data.results.records
+        });
       })
       .catch(err => {
         this.setState({
@@ -85,7 +88,7 @@ class SearchResults extends React.Component {
       );
       return {
         all_businesses: res.data.results.searched_businesses,
-        paginate: res.data.results.records,
+        paginate: res.data.results.records
       };
     } catch (err) {
       return null;
@@ -105,12 +108,12 @@ class SearchResults extends React.Component {
   handlePageChange = event => {
     // change page depending on pagination item clicked
     const page_id = event.target.id;
-      this.setState({
-          page: page_id
-        });
-      this.componentDidMount();
+    this.setState({
+      page: page_id
+    });
+    this.componentDidMount();
   };
-  
+
   render() {
     // Generate pagination data
     const iterator = [];
@@ -124,12 +127,8 @@ class SearchResults extends React.Component {
 
     // define pagination structure
     const pagination_data = iterator.map(number => {
-     
       return (
-        <Pagination.Item
-          id= {number}
-          onClickCapture={this.handlePageChange}
-        >
+        <Pagination.Item id={number} onClickCapture={this.handlePageChange}>
           {number}
         </Pagination.Item>
       );
@@ -168,7 +167,10 @@ class SearchResults extends React.Component {
               <b> Search Results </b>
             </h3>
           </div>
-          <BusinessTable business_data={table_data} pagination_data={pagination_data} />
+          <BusinessTable
+            business_data={table_data}
+            pagination_data={pagination_data}
+          />
         </div>
       </div>
     );

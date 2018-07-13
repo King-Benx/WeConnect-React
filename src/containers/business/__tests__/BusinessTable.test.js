@@ -3,8 +3,7 @@ import { shallow } from "enzyme";
 import BusinessTable from "../BusinessTable";
 
 describe("These are tests for the businesses info page ", () => {
-  const props = {
-  };
+  const props = {};
   let mountedBusinessTable;
   it("renders without crashing", () => {
     mountedBusinessTable = shallow(<BusinessTable {...props} />);
