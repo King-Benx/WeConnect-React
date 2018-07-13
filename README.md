@@ -8,9 +8,6 @@ WeConnect provides a platform that brings businesses and individuals together. T
 creates awareness for businesses and gives the users the ability to write reviews about the
 businesses they have interacted with.
 
-## SCREENSHOT
-![screenshot](https://www.dropbox.com/s/tq55da86fk25unx/Screen%20Shot%202018-07-13%20at%2009.53.38.png?dl=0)
-
 ## LINK TO APP
 ### [WeConnect-React](https://weconnect-reactjs.herokuapp.com)
 
