@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Table } from "react-bootstrap";
+import { Modal, Button, Table, Pagination } from "react-bootstrap";
 import axios from "axios";
 import CustomFunctions from "../../custom/CustomFunctions";
 import { BASE_URL } from "../../custom/constants";
@@ -18,7 +18,9 @@ class OwnedBusinesses extends React.Component {
       name: "",
       location: "",
       category: "",
-      description: ""
+      description: "",
+      page: "",
+      paginate:"",
     };
   }
   handleReset = event => {
@@ -54,31 +56,30 @@ class OwnedBusinesses extends React.Component {
         });
       })
       .catch(err => {
-        CustomFunctions.createNotifications(err.status, err.toString());
+        CustomFunctions.createNotifications(
+          err.status,
+          err.response.data.message
+        );
       });
   };
 
   componentDidMount() {
     // populates the business information
     axios
-      .get(BASE_URL + "api/v1/owned_businesses", {
+      .get(BASE_URL + "api/v1/owned_businesses?page=" +
+      this.state.page +
+      "&limit=5", {
         headers: { "x-access-token": CustomFunctions.getToken() }
       })
       .then(res => {
-        if (res.status === 404) {
-          this.setState({ owned_businesses: [], show: false });
-        } else if (res.status === 200) {
           this.setState({
             owned_businesses: res.data.results.businesses,
+            paginate: res.data.results.records,
             show: false
           });
-        }
       })
       .catch(err => {
-        CustomFunctions.createNotifications(
-          err.status,
-          err.response.data.message
-        );
+        this.setState({ owned_businesses: [], show: false }); 
       });
   }
 
@@ -119,7 +120,16 @@ class OwnedBusinesses extends React.Component {
       });
   };
 
+  handlePageChange = event => {
+    const page_id = event.target.id;
+      this.setState({
+          page: page_id
+        });
+      this.componentDidMount();
+  };
+
   render() {
+    // define table data
     const table_data = this.state.owned_businesses.map(business => {
       return (
         <tr key={business.id.toString()}>
@@ -175,7 +185,31 @@ class OwnedBusinesses extends React.Component {
         </tr>
       );
     });
+
+    // Generate pagination data
+    const iterator = [];
+    if (this.state.paginate !== 0) {
+      for (let i = 1; i <= this.state.paginate; i++) {
+        iterator.push(i);
+      }
+    } else {
+      iterator.push(1);
+    }
+
+    const pagination_data = iterator.map(number => {
+    // define pagination structure 
+      return (
+        <Pagination.Item
+          id= {number}
+          onClickCapture={this.handlePageChange}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    });
+
     return (
+      // JSX returned
       <div className="row">
         <DashboardNavigation />
         <div className="col-sm-9 content-wrapper">
@@ -202,6 +236,11 @@ class OwnedBusinesses extends React.Component {
                   </thead>
                   <tbody>{table_data}</tbody>
                 </Table>
+                <div className="row text-center">
+                <Pagination>
+                    <Pagination.Prev /> {pagination_data} <Pagination.Next />
+                  </Pagination>
+                </div>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                   <Modal.Header>
                     <Modal.Title>Edit Business</Modal.Title>

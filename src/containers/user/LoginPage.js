@@ -43,6 +43,7 @@ class LoginPage extends React.Component {
 
   render() {
     return (
+      // JSX returned
       <div className="row">
         <h1 className="text-center">
           <em>WeConnect</em>

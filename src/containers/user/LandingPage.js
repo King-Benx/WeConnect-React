@@ -63,6 +63,7 @@ class LandingPage extends React.Component {
 
   render() {
     return (
+      // JSX returned
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right">
           <div className="panel panel-info">

@@ -5,7 +5,7 @@ const Login = () => (
   <li>
     <Link to="/login">
       <b>
-        <i className="glyphicon glyphicon-log-in" /> Login
+        <i className="glyphicon glyphicon-log-in"></i> Login
       </b>
     </Link>
   </li>

@@ -48,6 +48,7 @@ class CreateBusiness extends React.Component {
   };
   render() {
     return (
+      // JSX returned
       <div className="row">
         <DashboardNavigation />
         <div className="col-sm-9 content-wrapper">
@@ -93,7 +94,7 @@ class CreateBusiness extends React.Component {
                     id="category"
                     value={this.state.category}
                     onChange={this.handleChange}
-                    placeholder="Business Name"
+                    placeholder="Business Category"
                     aria-describedby="category-addon"
                     required="required"
                   />

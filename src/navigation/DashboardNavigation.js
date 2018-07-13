@@ -4,6 +4,7 @@ import CustomFunctions from "../custom/CustomFunctions";
 
 const DashboardNavigation = props => {
   return CustomFunctions.checkAuthentication() ? (
+    // JSX returned of authenticated user
     <div className="col-sm-3 wrapper">
       <h3 className="text-center">WeConnect</h3>
       <div className="list-group side-menu">
@@ -40,7 +41,7 @@ const DashboardNavigation = props => {
         </Link>
       </div>
     </div>
-  ) : (
+  ) : ( // redirect to login if not authenticated
     <Redirect to={{ pathname: "/login" }} />
   );
 };

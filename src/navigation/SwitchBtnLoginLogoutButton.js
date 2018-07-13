@@ -6,6 +6,7 @@ import Logout from "../navigation/Logout";
 class SwitchBtnLoginLogoutButton extends React.Component {
   render() {
     return CustomFunctions.checkAuthentication() ? (
+      // JSX returned switches between login and logout
       <ul className="nav navbar-nav navbar-right">
         <Search />
         <Logout />

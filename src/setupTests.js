@@ -1,6 +1,7 @@
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 class LocalStorageMock {
+  // mocks local storage 
   constructor() {
     this.store = {};
   }

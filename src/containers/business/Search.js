@@ -33,6 +33,7 @@ class Search extends React.Component {
 
   render() {
     return (
+      // JSX returned
       <li>
         <form className="navbar-form" onSubmit={this.formSubmit}>
           <div className="form-group">
