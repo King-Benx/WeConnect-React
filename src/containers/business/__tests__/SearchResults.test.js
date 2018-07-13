@@ -62,24 +62,14 @@ describe("These are tests for the search form ", () => {
     expect(dashboards.length).toBe(1);
   });
 
-  it("has a table", () => {
-    const tables = mountedSearchResults.find("Table");
-    expect(tables.length).toBe(1);
+  it("has a business_table", () => {
+    const business_tables = mountedSearchResults.find("BusinessTable");
+    expect(business_tables.length).toBe(1);
   });
 
   it("has a div", () => {
     const divs = mountedSearchResults.find("div");
-    expect(divs.length).toBe(6);
-  });
-
-  it("has a table head", () => {
-    const tableheads = mountedSearchResults.find("thead");
-    expect(tableheads.length).toBe(1);
-  });
-
-  it("has a table body", () => {
-    const tablebody = mountedSearchResults.find("tbody");
-    expect(tablebody.length).toBe(1);
+    expect(divs.length).toBe(3);
   });
 
   it("has an h3", () => {

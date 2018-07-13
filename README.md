@@ -20,12 +20,18 @@ businesses they have interacted with.
 
 1. Create a folder weconnect-react
 
-    Clone repository to the folder
+    **```mkdir weconnect-react```**
+
+2. Clone repository to the folder
 
     **```git clone https://github.com/King-Benx/WeConnect-React.git```**
 
+3. From your terminal, navigate to the weconnect-react folder created
 
-2. Install Required Packages Redirect into the app directory and run the following command (Make sure you have npm installed on your machine)
+     **```cd  weconnect-react/```**
+
+
+4. Install Required Packages Redirect into the app directory and run the following command (Make sure you have npm installed on your machine)
 
     **```npm install```**
 
@@ -44,10 +50,13 @@ businesses they have interacted with.
     **```npm test```**
 
 ## MODIFYING API RESOURCE
-   You can set the API resource location in this file 
+1. To modify the data source for the application to use a local api
     
    **```src/custom/constants.js```**
 
+2. Change the BASE_URL 
+
+   **```const const BASE_URL = "http://127.0.0.1:5000/";```**
 ## Author
 
 Asiimwe Benard

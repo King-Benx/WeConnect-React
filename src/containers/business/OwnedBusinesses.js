@@ -54,12 +54,6 @@ class OwnedBusinesses extends React.Component {
           category: res.data.business_info.category,
           description: res.data.business_info.description
         });
-      })
-      .catch(err => {
-        CustomFunctions.createNotifications(
-          err.status,
-          err.response.data.message
-        );
       });
   };
 
