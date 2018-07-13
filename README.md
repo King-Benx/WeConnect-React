@@ -8,6 +8,19 @@ WeConnect provides a platform that brings businesses and individuals together. T
 creates awareness for businesses and gives the users the ability to write reviews about the
 businesses they have interacted with.
 
+## APPLICATION FEATURES
+
+1. User registration
+2. Login and authentication
+3. Business creation, view, modification and delete
+4. Registered business display
+5. Search for business
+6. Creation of business review and display of reviews
+7. User password reset
+8. User logout
+9. Smart toaster notifications of activity status
+10. Validation of user input
+
 ## LINK TO APP
 ### [WeConnect-React](https://weconnect-reactjs.herokuapp.com)
 
